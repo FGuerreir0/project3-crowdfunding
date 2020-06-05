@@ -4,9 +4,9 @@ const baseAuthenticationService = axios.create({
   baseURL: '/api/authentication',
 });
 
-const signIn = (body) => {
+const login = (body) => {
   return baseAuthenticationService
-    .post('/sign-in', body)
+    .post('/login', body)
     .then((result) => {
       const user = result.data.user;
       return Promise.resolve(user);
@@ -16,13 +16,13 @@ const signIn = (body) => {
     });
 };
 
-const signUp = (body) => {
+const register = (body) => {
   const form = new FormData();
   form.append('username', body.username);
   form.append('email', body.email);
   form.append('password', body.password);
   return baseAuthenticationService
-    .post('/sign-up', form)
+    .post('/register', form)
     .then((result) => {
       const user = result.data.user;
       return Promise.resolve(user);
@@ -55,4 +55,4 @@ const loadAuthenticatedUser = () => {
     });
 };
 
-export { signUp, signIn, signOut, loadAuthenticatedUser };
+export { register, login, signOut, loadAuthenticatedUser };
