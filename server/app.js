@@ -13,6 +13,8 @@ const basicAuthenticationDeserializer = require('./middleware/basic-authenticati
 
 const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
+const profileRouter = require('./routes/profile');
+const projectRouter = require('./routes/project');
 
 const app = express();
 
@@ -41,6 +43,8 @@ app.use(basicAuthenticationDeserializer);
 
 app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/project', projectRouter);
+app.use('/user', profileRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
