@@ -8,19 +8,22 @@ const User = require('./../models/user');
 const router = new Router();
 
 router.post('/register', (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
+
+  console.log('Estou na route authentication');
+
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
       return User.create({
-        name,
+        username,
         email,
         passwordHash: hash
       });
     })
     .then((user) => {
       req.session.user = user._id;
-      res.json({ user });
+      res.json({ user: user });
     })
     .catch((error) => {
       next(error);
