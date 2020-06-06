@@ -11,6 +11,8 @@ const mongoose = require('mongoose');
 const serveFavicon = require('serve-favicon');
 const basicAuthenticationDeserializer = require('./middleware/basic-authentication-deserializer.js');
 
+const cors = require('cors');
+
 const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const profileRouter = require('./routes/profile');
@@ -39,10 +41,18 @@ app.use(
     })
   })
 );
+
+app.use(
+  cors({
+    credentials: true,
+    origin: ['http://localhost:3000'] // <== this will be the URL of our React app (it will be running on port 3000)
+  })
+);
+
 app.use(basicAuthenticationDeserializer);
 
 app.use('/', indexRouter);
-app.use('/authentication', authenticationRouter);
+app.use('/api/authentication', authenticationRouter);
 app.use('/project', projectRouter);
 app.use('/user', profileRouter);
 
