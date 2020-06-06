@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 
+//IMPORT COMPONENTS HERE
+import NavBar from './components/Navbar';
+
 //IMPORT ROUTES HERE
 
 import RegisterView from './views/Register';
+import LoginView from './views/Login';
 import WelcomeView from './views/Welcome';
 
 //IMPORT SERVICES HERE
@@ -42,12 +46,21 @@ class App extends Component {
       <div className='App'>
         {this.state.loaded && (
           <BrowserRouter>
+            <NavBar user={this.state.user} updateUser={this.updateUser} />
+
             <Switch>
               <Route
                 exact
                 path='/authentication/register'
                 render={(props) => <RegisterView {...props} updateUser={this.updateUser} />}
               />
+
+              <Route
+                exact
+                path='/authentication/login'
+                render={(props) => <LoginView {...props} updateUser={this.updateUser} />}
+              />
+
               <Route
                 exact
                 path='/welcome'

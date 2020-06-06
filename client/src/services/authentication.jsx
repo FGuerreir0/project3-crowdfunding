@@ -37,7 +37,7 @@ const register = (body) => {
 
 const logout = () => {
   return baseAuthenticationService
-    .post('/sign-out')
+    .post('/logout')
     .then((response) => {
       return Promise.resolve();
     })
