@@ -20,7 +20,9 @@ const schema = new mongoose.Schema({
     type: String
   },
   pictureUrl: {
-    type: String
+    type: String,
+    default:
+      'https://res.cloudinary.com/fguerreir0/image/upload/v1591445011/Sample/defaultuser_kvhkdf.png'
   },
   birthday: {
     type: String
