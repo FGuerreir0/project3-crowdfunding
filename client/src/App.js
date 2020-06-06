@@ -5,6 +5,7 @@ import './App.css';
 //IMPORT ROUTES HERE
 
 import RegisterView from './views/Register';
+import LoginView from './views/Login';
 import WelcomeView from './views/Welcome';
 
 //IMPORT SERVICES HERE
@@ -48,6 +49,13 @@ class App extends Component {
                 path='/authentication/register'
                 render={(props) => <RegisterView {...props} updateUser={this.updateUser} />}
               />
+
+              <Route
+                exact
+                path='/authentication/login'
+                render={(props) => <LoginView {...props} updateUser={this.updateUser} />}
+              />
+
               <Route
                 exact
                 path='/welcome'
