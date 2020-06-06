@@ -80,6 +80,12 @@ class RegisterView extends Component {
           <div className='input-container'>
             <button>Register</button>
           </div>
+          <div>
+            <small className='smaller-container'>
+              Did you know?<br></br>
+              Food waste in Europe alone could feed 200 million hungry people
+            </small>
+          </div>
         </form>
       </div>
     );
