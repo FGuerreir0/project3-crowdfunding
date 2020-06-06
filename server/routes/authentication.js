@@ -60,4 +60,10 @@ router.post('/logout', (req, res, next) => {
   res.json({});
 });
 
+router.get('/me', (req, res, next) => {
+  res.json({
+    user: req.user || null
+  });
+});
+
 module.exports = router;

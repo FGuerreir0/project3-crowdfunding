@@ -1,0 +1,19 @@
+.welcome-container {
+  text-align: center;
+  margin: 0 auto;
+  height: 100%;
+  margin-top: 20%;
+}
+
+.anchor-style {
+  text-align: right;
+  margin-right: 10%;
+  font-size: 30px;
+  text-decoration: none;
+
+  :hover {
+    text-decoration: none;
+    font-size: 80px;
+    color: blue;
+  }
+}

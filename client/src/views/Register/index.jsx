@@ -23,9 +23,10 @@ class RegisterView extends Component {
     event.preventDefault();
 
     const { username, email, password } = this.state;
-
+    //console.log(username, email, password);
     register({ username, email, password })
       .then((user) => {
+        //console.log(user);
         this.props.updateUser(user);
         this.props.history.push('/welcome');
       })
@@ -38,9 +39,9 @@ class RegisterView extends Component {
     return (
       <div>
         <form onSubmit={this.handleFormSubmission}>
-          <label htmlFor='username-input'>Username</label>
+          <label htmlFor='username'>Username</label>
           <input
-            id='name-input'
+            id='username'
             name='username'
             type='text'
             placeholder='Username'
@@ -49,7 +50,7 @@ class RegisterView extends Component {
           />
           <label htmlFor='email-input'>Email</label>
           <input
-            id='email-input'
+            id='email'
             name='email'
             type='email'
             placeholder='Email'
@@ -58,7 +59,7 @@ class RegisterView extends Component {
           />
           <label htmlFor='password-input'>Password</label>
           <input
-            id='password-input'
+            id='password'
             name='password'
             type='password'
             placeholder='Password'

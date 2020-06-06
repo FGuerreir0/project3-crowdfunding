@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+//IMPORT ROUTES HERE
 
+import RegisterView from './views/Register';
+import WelcomeView from './views/Welcome';
+
+//IMPORT SERVICES HERE
+import { loadAuthenticatedUser } from './services/authentication';
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: null
+    };
+  }
+
+  componentDidMount() {
+    loadAuthenticatedUser()
+      .then((user) => {
+        this.updateUser(user);
+        this.setState({
+          loaded: true
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  updateUser = (user) => {
+    this.setState({
+      user
+    });
+  };
+
+  render() {
+    return (
+      <div className='App'>
+        {this.state.loaded && (
+          <BrowserRouter>
+            <Switch>
+              <Route
+                exact
+                path='/authentication/register'
+                render={(props) => <RegisterView {...props} updateUser={this.updateUser} />}
+              />
+              <Route
+                exact
+                path='/welcome'
+                render={(props) => <WelcomeView {...props} user={this.state.user} />}
+              />
+            </Switch>
+          </BrowserRouter>
+        )}
+      </div>
+    );
+  }
+}
 export default App;
