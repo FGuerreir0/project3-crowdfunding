@@ -18,6 +18,9 @@ Displays all the projects
 -Single-
 Displays a single project
 
+-Edit Single
+Displays a single project but with edit options
+
 -Create Project-
 Displays the CREATE PROJECT FORM
 
