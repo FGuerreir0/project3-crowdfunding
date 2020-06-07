@@ -15,7 +15,7 @@ const NavBar = (props) => {
   };
   console.log(props.user);
   return (
-    <nav className='navbar'>
+    <nav className='w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2'>
       <Link to='/'>
         <div className='logo'>
           <img src='#' alt='Logo' />
