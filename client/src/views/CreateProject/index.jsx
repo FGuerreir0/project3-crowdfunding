@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styles.scss';
 import Needs from './../../components/Needs';
+import Needsinput from './../../components/Input';
 
 export default class CreateProjectView extends Component {
   constructor() {
@@ -63,6 +64,7 @@ export default class CreateProjectView extends Component {
     });
     console.log(arr, newarr);
   };
+
   render() {
     return (
       <div>
@@ -111,6 +113,13 @@ export default class CreateProjectView extends Component {
         </form>
         <div>
           <label>Resources</label>
+
+          <Needsinput addResources={this.addResource} />
+
+          <label>Volunteer</label>
+
+          <Needsinput addResources={this.addVolunteer} />
+
           {this.state.resources.map((resource, index) => {
             return (
               <div key={index}>
@@ -123,8 +132,6 @@ export default class CreateProjectView extends Component {
               </div>
             );
           })}
-          <Needs addResources={this.addResource} />
-          <label>Volunteer</label>
           {this.state.volunteer.map((volunteer, index) => {
             return (
               <div key={index}>
@@ -137,7 +144,6 @@ export default class CreateProjectView extends Component {
               </div>
             );
           })}
-          <Needs addResources={this.addVolunteer} />
         </div>
       </div>
     );
