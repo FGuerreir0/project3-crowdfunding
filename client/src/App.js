@@ -4,12 +4,12 @@ import './App.css';
 
 //IMPORT COMPONENTS HERE
 import NavBar from './components/Navbar';
-
 //IMPORT ROUTES HERE
 
 import RegisterView from './views/Register';
 import LoginView from './views/Login';
 import WelcomeView from './views/Welcome';
+import CreateProjectView from './views/CreateProject';
 
 //IMPORT SERVICES HERE
 import { loadAuthenticatedUser } from './services/authentication';
@@ -18,8 +18,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: null,
       loaded: false,
+      user: null,
     };
   }
 
@@ -63,6 +63,7 @@ class App extends Component {
               />
 
               <Route exact path='/welcome' render={(props) => <WelcomeView {...props} user={this.state.user} />} />
+              <Route exact path='/create' render={(props) => <CreateProjectView {...props} user={this.state.user} />} />
             </Switch>
           </BrowserRouter>
         )}
