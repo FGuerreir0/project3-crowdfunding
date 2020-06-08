@@ -18,7 +18,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: null
+      user: null,
+      loaded: false,
     };
   }
 
@@ -27,7 +28,7 @@ class App extends Component {
       .then((user) => {
         this.updateUser(user);
         this.setState({
-          loaded: true
+          loaded: true,
         });
       })
       .catch((error) => {
@@ -37,7 +38,7 @@ class App extends Component {
 
   updateUser = (user) => {
     this.setState({
-      user
+      user,
     });
   };
 
@@ -61,11 +62,7 @@ class App extends Component {
                 render={(props) => <LoginView {...props} updateUser={this.updateUser} />}
               />
 
-              <Route
-                exact
-                path='/welcome'
-                render={(props) => <WelcomeView {...props} user={this.state.user} />}
-              />
+              <Route exact path='/welcome' render={(props) => <WelcomeView {...props} user={this.state.user} />} />
             </Switch>
           </BrowserRouter>
         )}
