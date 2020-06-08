@@ -6,92 +6,83 @@ const schema = new mongoose.Schema(
   {
     title: {
       type: String,
-      trim: true
+      trim: true,
     },
     creator: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
     },
     coverPictureUrl: {
-      type: String
+      type: String,
     },
     bodyPicturesUrl: [
       {
-        type: String
-      }
+        type: String,
+      },
     ],
     location: {
-      type: String
+      type: String,
     },
     shortDescription: {
-      type: String
+      type: String,
     },
     longDescription: {
-      type: String
+      type: String,
     },
     category: {
       type: String,
-      enum: [
-        'food',
-        'education',
-        'fashion',
-        'sanitation',
-        'environment',
-        'recycling',
-        'donation',
-        'others'
-      ]
+      enum: ['food', 'education', 'fashion', 'sanitation', 'environment', 'recycling', 'donation', 'others'],
     },
     backers: [
       {
         userId: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: 'User'
-        }
-      }
+          ref: 'User',
+        },
+      },
     ],
     needs: {
       money: {
         total: {
-          type: Number
+          type: Number,
         },
         backed: {
-          type: Number
-        }
+          type: Number,
+        },
       },
       resources: [
         {
-          total: {
-            type: Number
+          quantity: {
+            type: Number,
           },
           backed: {
-            type: Number
+            type: Number,
           },
-          description: {
-            type: String
-          }
-        }
+          name: {
+            type: String,
+          },
+        },
       ],
       volunteer: [
         {
-          total: {
-            type: Number
+          name: {
+            type: Number,
           },
           backed: {
-            type: Number
+            type: Number,
           },
-          description: {
-            type: String
-          }
-        }
-      ]
-    }
+          quantity: {
+            type: String,
+          },
+        },
+      ],
+    },
   },
   {
     Timestamps: {
       createdAt: 'createdDate',
-      updatedAt: 'updatedDate'
-    }
+      updatedAt: 'updatedDate',
+    },
   }
 );
 
