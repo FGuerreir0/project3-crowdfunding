@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import Needs from './../../components/Needs';
+import NeedsInput from './../../components/Input';
+import { createProject } from './../../services/project';
 
 export default class CreateProjectView extends Component {
   constructor() {
     super();
     this.state = {
       title: '',
-      picture: null,
+      coverPictureUrl: null,
       description: '',
       location: '',
       money: '',
@@ -23,7 +24,6 @@ export default class CreateProjectView extends Component {
     this.setState({
       resources: arr,
     });
-    console.log(this.state.resources);
   };
 
   addVolunteer = (name, quantity) => {
@@ -33,7 +33,6 @@ export default class CreateProjectView extends Component {
     this.setState({
       volunteer: arr,
     });
-    console.log(this.state.volunteer);
   };
 
   prevent = (event) => {
@@ -46,13 +45,20 @@ export default class CreateProjectView extends Component {
     });
   };
 
+  handleFileInputChange = (event) => {
+    const { name } = event.target;
+    const file = event.target.files[0];
+    this.setState({
+      [name]: file,
+    });
+  };
+
   deleteResource = (idx) => {
     const arr = [...this.state.resources];
     const newarr = arr.filter((resource, index) => idx !== index);
     this.setState({
       resources: newarr,
     });
-    console.log(arr, newarr);
   };
 
   deleteVolunteer = (idx) => {
@@ -61,8 +67,20 @@ export default class CreateProjectView extends Component {
     this.setState({
       volunteer: newarr,
     });
-    console.log(arr, newarr);
   };
+
+  create = (event) => {
+    event.preventDefault();
+    const data = { ...this.state };
+    createProject(data)
+      .then((result) => {
+        console.log('oi');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div>
@@ -77,8 +95,8 @@ export default class CreateProjectView extends Component {
           />
           <br></br>
 
-          <label htmlFor='pictureUrl'>Picture </label>
-          <input type='file' name='pictureUrl' id='pictureUrl' onChange={this.handleInputChange} />
+          <label htmlFor='picture'>Picture </label>
+          <input type='file' name='coverPictureUrl' id='picture' onChange={this.handleFileInputChange} />
           <br></br>
 
           <label htmlFor='description'>Description </label>
@@ -101,16 +119,22 @@ export default class CreateProjectView extends Component {
           />
           <br></br>
 
-          <label htmlFor='needs'>Needs: </label>
-          {
-            //<input type='number' id='money' name='money' value='money' onChange={this.handleInputChange}/>
-          }
-          <br></br>
+          <h1>Needs: </h1>
 
-          <button>Submit</button>
+          <label htmlFor='money'>Money: </label>
+          <input type='number' id='money' name='money' value={this.state.money} onChange={this.handleInputChange} />
+
+          <br></br>
         </form>
         <div>
           <label>Resources</label>
+
+          <NeedsInput addResources={this.addResource} />
+
+          <label>Volunteer</label>
+
+          <NeedsInput addResources={this.addVolunteer} />
+
           {this.state.resources.map((resource, index) => {
             return (
               <div key={index}>
@@ -123,8 +147,6 @@ export default class CreateProjectView extends Component {
               </div>
             );
           })}
-          <Needs addResources={this.addResource} />
-          <label>Volunteer</label>
           {this.state.volunteer.map((volunteer, index) => {
             return (
               <div key={index}>
@@ -137,8 +159,10 @@ export default class CreateProjectView extends Component {
               </div>
             );
           })}
-          <Needs addResources={this.addVolunteer} />
         </div>
+        <form onSubmit={this.create}>
+          <button>Create Project</button>
+        </form>
       </div>
     );
   }

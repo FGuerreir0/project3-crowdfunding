@@ -53,8 +53,8 @@ app.use(basicAuthenticationDeserializer);
 
 app.use('/', indexRouter);
 app.use('/api/authentication', authenticationRouter);
-app.use('/project', projectRouter);
-app.use('/user', profileRouter);
+app.use('/api/project', projectRouter);
+app.use('/api/user', profileRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

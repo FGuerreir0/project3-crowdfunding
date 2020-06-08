@@ -15,25 +15,29 @@ export default class InputComponent extends Component {
     });
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState !== this.state) {
-      this.props.pass(this.state.name, this.state.quantity);
-    }
-  }
+  handleSubmission = (event) => {
+    event.preventDefault();
+    this.props.addResources(this.state.name, this.state.quantity);
+    this.setState({
+      name: '',
+      quantity: 0,
+    });
+  };
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.handleSubmission}>
         <input
           type='text'
           name='name'
-          value={this.props.name}
-          placeholder={this.props.name}
+          value={this.state.name}
+          placeholder='type here ...'
           onChange={this.handleInputChange}
         />
         <label>Qtd: </label>
-        <input type='number' name='quantity' value={this.props.quantity} onChange={this.handleInputChange} />
-      </div>
+        <input type='number' name='quantity' value={this.state.quantity} onChange={this.handleInputChange} />
+        <button>Add</button>
+      </form>
     );
   }
 }
