@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import Needs from './../../components/Needs';
-import Needsinput from './../../components/Input';
+import NeedsInput from './../../components/Input';
 
 export default class CreateProjectView extends Component {
   constructor() {
@@ -114,11 +113,11 @@ export default class CreateProjectView extends Component {
         <div>
           <label>Resources</label>
 
-          <Needsinput addResources={this.addResource} />
+          <NeedsInput addResources={this.addResource} />
 
           <label>Volunteer</label>
 
-          <Needsinput addResources={this.addVolunteer} />
+          <NeedsInput addResources={this.addVolunteer} />
 
           {this.state.resources.map((resource, index) => {
             return (
