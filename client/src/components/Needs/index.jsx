@@ -12,6 +12,11 @@ export default class needs extends Component {
 
   submitHandle = (event) => {
     event.preventDefault();
+    console.log('zerou');
+    this.setState({
+      name: '',
+      quantity: 0,
+    });
   };
 
   passHandle = (name, value) => {

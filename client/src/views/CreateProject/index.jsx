@@ -36,10 +36,32 @@ export default class CreateProjectView extends Component {
     console.log(this.state.volunteer);
   };
 
+  prevent = (event) => {
+    event.preventDefault();
+  };
+
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value,
     });
+  };
+
+  deleteResource = (idx) => {
+    const arr = [...this.state.resources];
+    const newarr = arr.filter((resource, index) => idx !== index);
+    this.setState({
+      resources: newarr,
+    });
+    console.log(arr, newarr);
+  };
+
+  deleteVolunteer = (idx) => {
+    const arr = [...this.state.volunteer];
+    const newarr = arr.filter((v, index) => idx !== index);
+    this.setState({
+      volunteer: newarr,
+    });
+    console.log(arr, newarr);
   };
   render() {
     return (
@@ -89,8 +111,32 @@ export default class CreateProjectView extends Component {
         </form>
         <div>
           <label>Resources</label>
+          {this.state.resources.map((resource, index) => {
+            return (
+              <div key={index}>
+                <p>
+                  name:{resource.name} qty:{resource.quantity}
+                </p>
+                <form onSubmit={this.prevent}>
+                  <button onClick={() => this.deleteResource(index)}>delete</button>
+                </form>
+              </div>
+            );
+          })}
           <Needs addResources={this.addResource} />
           <label>Volunteer</label>
+          {this.state.volunteer.map((volunteer, index) => {
+            return (
+              <div key={index}>
+                <p>
+                  name:{volunteer.name} qty:{volunteer.quantity}
+                </p>
+                <form onSubmit={this.prevent}>
+                  <button onClick={() => this.deleteVolunteer(index)}>delete</button>
+                </form>
+              </div>
+            );
+          })}
           <Needs addResources={this.addVolunteer} />
         </div>
       </div>
