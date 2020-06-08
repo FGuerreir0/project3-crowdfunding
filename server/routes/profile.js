@@ -4,15 +4,35 @@ const { Router } = require('express');
 const profileRouter = new Router();
 const routeGuard = require('./../middleware/route-guard');
 
+const User = require('./../models/user');
+
+//DON'T FORGET TO CONFIGURE MULTER AND CLOUDINARY
+
 //SINGLE VIEW
 profileRouter.get('/user/:userId', (req, res, next) => {
-  res.json({});
+  const id = req.params.userId;
+
+  User.findById(id)
+    .then((result) => {
+      res.json({ user: result });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 // EDIT USER PROFILE
 
 profileRouter.get('/user/:userId/edit', (req, res, next) => {
-  res.json({});
+  const id = req.params.userId;
+
+  User.findById(id)
+    .then((result) => {
+      res.json({ user: result });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 profileRouter.post('/user/:userId/edit', (req, res, next) => {

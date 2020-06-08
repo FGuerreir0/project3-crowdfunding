@@ -24,15 +24,12 @@ projectRouter.post('/:projectId/edit', (req, res, next) => {
 });
 
 //CREATE PROJECT
-projectRouter.get('/create', (req, res, next) => {
-  res.json({});
-});
 
 projectRouter.post('/create', (req, res, next) => {
   res.json({});
 });
 
-//CONTROBUTE PROJECT
+//CONTRiBUTE PROJECT
 projectRouter.get('/:projectId/contribute', (req, res, next) => {
   res.json({});
 });
