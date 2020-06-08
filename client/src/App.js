@@ -12,7 +12,8 @@ import WelcomeView from './views/Welcome';
 import CreateProjectView from './views/CreateProject';
 import ProfileView from './views/ProfileUser';
 import SingleProjectView from './views/SingleProject';
-import EditProfileView from './views/SingleProject';
+import EditProfileView from './views/EditAccount';
+import EditProjectView from './views/EditProject';
 
 //IMPORT SERVICES HERE
 import { loadAuthenticatedUser } from './services/authentication';
@@ -76,6 +77,12 @@ class App extends Component {
                 path='/create'
                 render={(props) => <CreateProjectView {...props} user={this.state.user} />}
               />
+
+              <Route
+                exact
+                path='/user/:user_id/projects'
+                render={(props) => <EditProfileView {...props} />}
+              />
               <Route
                 exact
                 path='/project/:project_id'
@@ -85,7 +92,7 @@ class App extends Component {
               <Route
                 exact
                 path='/project/:project_id/edit'
-                render={(props) => <EditProfileView {...props} />}
+                render={(props) => <EditProjectView {...props} />}
               />
 
               {/* PROFILE ROUTES*/}
@@ -98,19 +105,13 @@ class App extends Component {
               <Route
                 exact
                 path='/user/:user_id/edit'
-                render={(props) => <EditProfileView {...props} />}
-              />
-
-              <Route
-                exact
-                path='/user/:user_id/projects'
-                render={(props) => <EditProfileView {...props} />}
+                render={(props) => <EditProfileView {...props} user={this.state.user} />}
               />
 
               <Route
                 exact
                 path='/user/:user_id/actions'
-                render={(props) => <EditProfileView {...props} />}
+                render={(props) => <EditProfileView {...props} user={this.state.user} />}
               />
             </Switch>
           </BrowserRouter>
