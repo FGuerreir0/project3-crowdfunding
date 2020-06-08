@@ -41,9 +41,6 @@ projectRouter.post('/:projectId/edit', (req, res, next) => {
 });
 
 //CREATE PROJECT
-projectRouter.get('/create', (req, res, next) => {
-  res.json({});
-});
 
 projectRouter.post('/create', uploader.single('coverPictureUrl'), (req, res, next) => {
   const { title, description, location, money, resources, volunteer } = req.body;
@@ -75,7 +72,7 @@ projectRouter.post('/create', uploader.single('coverPictureUrl'), (req, res, nex
     });
 });
 
-//CONTROBUTE PROJECT
+//CONTRiBUTE PROJECT
 projectRouter.get('/:projectId/contribute', (req, res, next) => {
   res.json({});
 });
