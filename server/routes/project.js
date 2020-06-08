@@ -47,7 +47,6 @@ projectRouter.post('/create', uploader.single('coverPictureUrl'), (req, res, nex
 
   let coverPictureUrl;
   if (req.file) coverPictureUrl = req.file.path;
-  console.log(coverPictureUrl);
   //console.log(resources);
 
   Project.create({
@@ -58,8 +57,8 @@ projectRouter.post('/create', uploader.single('coverPictureUrl'), (req, res, nex
       money: {
         total: money,
       },
-      //resources,
-      //   volunteer,
+      resources: JSON.parse(resources),
+      volunteer: JSON.parse(volunteer),
     },
     coverPictureUrl,
   })

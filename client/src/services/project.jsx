@@ -53,22 +53,19 @@ const getProjectByCategory = (category) => {
 };
 
 const createProject = (data) => {
-  console.log(data);
   const form = new FormData();
   form.append('title', data.title);
   form.append('description', data.description);
   form.append('money', data.money);
-  form.append('resources', data.resources);
-  form.append('volunteer', data.volunteer);
+  form.append('resources', JSON.stringify(data.resources));
+  form.append('volunteer', JSON.stringify(data.volunteer));
   form.append('location', data.location);
   form.append('coverPictureUrl', data.coverPictureUrl);
 
   console.log('create client', data);
   return baseProjectService
     .post('/create', form)
-    .then((result) => {
-      console.log(result);
-    })
+    .then((result) => {})
     .catch((err) => {
       return Promise.reject(err);
     });
