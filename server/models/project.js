@@ -6,83 +6,92 @@ const schema = new mongoose.Schema(
   {
     title: {
       type: String,
-      trim: true,
+      trim: true
     },
     creator: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'User'
     },
     coverPictureUrl: {
-      type: String,
+      type: String
     },
     bodyPicturesUrl: [
       {
-        type: String,
-      },
+        type: String
+      }
     ],
     location: {
-      type: String,
+      type: String
     },
     shortDescription: {
-      type: String,
+      type: String
     },
     longDescription: {
-      type: String,
+      type: String
     },
     category: {
       type: String,
-      enum: ['food', 'education', 'fashion', 'sanitation', 'environment', 'recycling', 'donation', 'others'],
+      enum: [
+        'food',
+        'education',
+        'fashion',
+        'sanitation',
+        'environment',
+        'recycling',
+        'donation',
+        'others'
+      ]
     },
     backers: [
       {
         userId: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: 'User',
-        },
-      },
+          ref: 'User'
+        }
+      }
     ],
     needs: {
       money: {
         total: {
-          type: Number,
+          type: Number
         },
         backed: {
-          type: Number,
-        },
+          type: Number
+        }
       },
       resources: [
         {
           quantity: {
-            type: Number,
+            type: Number
           },
           backed: {
-            type: Number,
+            type: Number
           },
           name: {
-            type: String,
-          },
-        },
+            type: String
+          }
+        }
       ],
       volunteer: [
         {
           name: {
-            type: Number,
+            type: Number
           },
           backed: {
-            type: Number,
+            type: Number
           },
           quantity: {
-            type: String,
-          },
-        },
-      ],
-    },
+            type: String
+          }
+        }
+      ]
+    }
   },
   {
     Timestamps: {
       createdAt: 'createdDate',
-      updatedAt: 'updatedDate',
-    },
+      updatedAt: 'updatedDate'
+    }
   }
 );
 

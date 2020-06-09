@@ -6,6 +6,7 @@ import './App.css';
 import NavBar from './components/Navbar';
 
 //IMPORT ROUTES HERE
+import HomeView from './views/Home';
 import RegisterView from './views/Register';
 import LoginView from './views/Login';
 import WelcomeView from './views/Welcome';
@@ -54,6 +55,12 @@ class App extends Component {
             <NavBar user={this.state.user} updateUser={this.updateUser} />
 
             <Switch>
+              {/* Home Route  */}
+              <Route
+                exact
+                path='/'
+                render={(props) => <HomeView {...props} updateUser={this.updateUser} />}
+              />
               {/* AUTHENTICATION ROUTES*/}
               <Route
                 exact
