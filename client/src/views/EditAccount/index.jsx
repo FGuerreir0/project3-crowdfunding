@@ -10,14 +10,14 @@ class EditAccountView extends Component {
 
   updateInputValue = (e) => {
     const {
-      target: { value }
+      target: { value },
     } = e;
     this.setState({ username: value });
   };
 
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
