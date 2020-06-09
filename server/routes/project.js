@@ -38,7 +38,14 @@ projectRouter.get('/list', (req, res, next) => {
 
 //SINGLE VIEW
 projectRouter.get('/:projectId', (req, res, next) => {
-  res.json({});
+  const id = req.params.projectId;
+  Project.findById(id)
+    .then((result) => {
+      res.json({ project: result });
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 //PROJECT EDIT

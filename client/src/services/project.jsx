@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseProjectService = axios.create({
-  baseURL: '/api/project'
+  baseURL: '/api/project',
 });
 
 const getAllprojects = () => {
@@ -18,7 +18,7 @@ const getAllprojects = () => {
 
 const getProjectById = (id) => {
   return baseProjectService
-    .get(`${id}`)
+    .get(`/${id}`)
     .then((result) => {
       const project = result.data.project;
       return Promise.resolve(project);
@@ -30,7 +30,7 @@ const getProjectById = (id) => {
 
 const updateProject = (body) => {
   return baseProjectService
-    .post(`${body.id}/edit`, body)
+    .post(`/${body.id}/edit`, body)
     .then((result) => {
       const project = result.data.project;
       console.log(project);
@@ -42,7 +42,7 @@ const updateProject = (body) => {
 
 const getProjectByCategory = (category) => {
   return baseProjectService
-    .get(`category/${category}`)
+    .get(`/category/${category}`)
     .then((result) => {
       const projects = result.data.projects;
       return Promise.resolve(projects);

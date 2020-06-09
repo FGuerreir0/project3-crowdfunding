@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import ProgressBar from "./../../components/ProgressBar"
+import ProgressBar from './../../components/ProgressBar';
 import { getProjectById } from './../../services/project';
 
 export class SingleProjectView extends Component {
@@ -8,17 +8,18 @@ export class SingleProjectView extends Component {
     super(props);
     this.state = {
       project: null,
-      loaded: false
+      loaded: false,
     };
   }
 
   loadSingleProject() {
-    const id = this.props.match.params.id;
+    const id = this.props.match.params.project_id;
     getProjectById(id)
       .then((project) => {
+        console.log('project:', project);
         this.setState({
           loaded: true,
-          project
+          project: { ...project },
         });
       })
       .catch((error) => {
@@ -31,6 +32,7 @@ export class SingleProjectView extends Component {
   }
   render() {
     const project = this.state.project;
+    console.log(project);
     return (
       <div>
         {!this.state.loaded && (
@@ -40,7 +42,6 @@ export class SingleProjectView extends Component {
         )}
         {project && (
           <>
-            <ProgressBar />
             <img src={project.coverPictureUrl} />
             <h1>{project.title}</h1>
             <small>{project.shortDescription}</small>
