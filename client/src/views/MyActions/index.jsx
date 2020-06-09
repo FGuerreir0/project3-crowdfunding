@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles.scss';
 
-class MyProjectsView extends Component {
+class MyActionsView extends Component {
   render() {
     return (
       <div>
