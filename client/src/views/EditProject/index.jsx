@@ -1,95 +1,82 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import axios from 'axios';
+import { updateProject } from './../../services/project';
 
 class EditProjectView extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      id: '',
-      title: '',
-      description: '',
-      location: ''
-    };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.state = { ...props.project };
   }
 
-  getProjectDetails() {
-    let projectId = this.props.match.params.id;
-    axios
-      .get(/*Project single page path*/)
-      .then((res) => {
-        this.setState(
-          {
-            id: res.data.id,
-            title: res.data.name,
-            description: res.data.description,
-            location: res.data.location
-          },
-          () => {
-            console.log(this.state);
-          }
-        );
-      })
-      .catch((err) => console.log(err));
-  }
-
-  editProject(newProject) {
-    // If everything is working, this would handle the form submit
-  }
-
-  onSubmit(e) {
-    const newProject = {
-      title: this.title.value,
-      description: this.description.value,
-      location: this.location.value
-    };
-    this.editProject(newProject);
-    e.preventDefault();
-  }
-
-  handleInputChange(e) {
-    const target = e.target;
-    const value = target.value;
-
-    const name = target.name;
-
+  handleInputChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value
     });
-  }
+  };
+
+  handleFileInputChange = (event) => {
+    const { name } = event.target;
+    const file = event.target.files[0];
+    this.setState({
+      [name]: file
+    });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    const { _id, title, description, location, coverPictureUrl } = this.state;
+
+    updateProject({ _id, title, description, location, coverPictureUrl })
+      .then((project) => {
+        this.props.updateProject(project);
+        this.props.history.push({ pathname: `/project/${project._id}`, project });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
       <div>
-        <h1>This is the Edit Account View</h1>
-        <form action=''>
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor='title'>Title</label>
           <input
             type='text'
-            className='update-project-title'
+            className='update-title'
             name='title'
-            placeholder='New title'
             value={this.state.title}
             onChange={this.handleInputChange}
           />
+          <label htmlFor='description'>Description</label>
           <input
-            type='text'
-            className='update-project-description'
+            type='textarea'
+            className='update-description'
             name='description'
-            placeholder='New Description'
             value={this.state.description}
             onChange={this.handleInputChange}
           />
 
+          <label htmlFor='location'>Location</label>
           <input
             type='text'
-            className='update-project-location'
-            name='title'
-            placeholder='New location'
+            className='update-location'
+            name='location'
             value={this.state.location}
             onChange={this.handleInputChange}
           />
+
+          <label htmlFor='coverPictureUrl'>Cover Picture</label>
+          <input
+            type='file'
+            name='coverPictureUrl'
+            id='coverPictureUrl'
+            value={this.state.coverPictureUrl}
+            onChange={this.handleFileInputChange}
+          />
+
+          <button> Submit </button>
         </form>
       </div>
     );
