@@ -10,6 +10,7 @@ class ProfileUserView extends Component {
       user: null,
       loaded: false,
       isOwner: false,
+      projects: [],
     };
   }
 
@@ -17,12 +18,14 @@ class ProfileUserView extends Component {
     let isOwner = false;
     if (this.props.user) isOwner = this.props.match.params.id === this.props.user._id;
     getUserById(this.props.match.params.id)
-      .then((user) => {
+      .then((result) => {
         console.log('owner', isOwner);
+        console.log('result', result);
         this.setState({
-          user,
+          user: result.user,
           loaded: true,
           isOwner,
+          projects: [...result.projects],
         });
       })
       .catch((error) => {
@@ -57,6 +60,14 @@ class ProfileUserView extends Component {
             <h2>About me: {user.bio}</h2>
             <br></br>
             <p>My Projects</p>
+
+            {
+              //só pra teste - no lugar do project.title vai um component com as informacoes do projeto
+              this.state.projects.map((project) => {
+                return <p>{project.title}</p>;
+              })
+            }
+
             <br></br>
             <p>Contributed Actions</p>
             {this.state.isOwner && <Link to={`/user/${user._id}/edit`}>Edit</Link>}

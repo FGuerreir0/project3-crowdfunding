@@ -45,6 +45,7 @@ export class SingleProjectView extends Component {
             <img src={project.coverPictureUrl} />
             <h1>{project.title}</h1>
             <small>{project.shortDescription}</small>
+            <ProgressBar project={project} />
           </>
         )}
       </div>

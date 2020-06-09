@@ -10,7 +10,9 @@ const getUserById = (id) => {
     .get(`/${id}`, id)
     .then((result) => {
       const user = result.data.user;
-      return Promise.resolve(user);
+      const projects = result.data.projects;
+      const actions = result.data.actios;
+      return Promise.resolve({ user, projects, actions });
     })
     .catch((err) => {
       return Promise.reject(err);
