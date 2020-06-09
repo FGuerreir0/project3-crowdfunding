@@ -18,8 +18,9 @@ const getUserById = (id) => {
 };
 
 const updateUser = (body) => {
-  return baseUserService
+  console.log(body);
 
+  return baseUserService
     .post(`/${body._id}/edit`, body)
     .then((result) => {
       const user = result.data.user;
