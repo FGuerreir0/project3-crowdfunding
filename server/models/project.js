@@ -53,7 +53,7 @@ const schema = new mongoose.Schema(
     needs: {
       money: {
         total: {
-          type: Number
+          type: String
         },
         backed: {
           type: Number
