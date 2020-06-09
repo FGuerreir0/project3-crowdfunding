@@ -39,6 +39,7 @@ profileRouter.get('/:id', (req, res, next) => {
 
 profileRouter.post('/:userId/edit', uploader.single('pictureUrl'), (req, res, next) => {
   const id = req.params.userId;
+  const pictureUrl = req.file.path;
 
   const { username, location, bio } = req.body;
   User.findByIdAndUpdate({ _id: id }, { username, location, bio, pictureUrl })
