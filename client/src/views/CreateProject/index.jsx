@@ -10,6 +10,7 @@ export default class CreateProjectView extends Component {
       title: '',
       coverPictureUrl: null,
       description: '',
+      category: 'Food',
       location: '',
       money: '',
       resources: [],
@@ -40,6 +41,7 @@ export default class CreateProjectView extends Component {
   };
 
   handleInputChange = ({ target: { name, value } }) => {
+    console.log(name, value);
     this.setState({
       [name]: value
     });
@@ -74,7 +76,7 @@ export default class CreateProjectView extends Component {
     const data = { ...this.state };
     createProject(data)
       .then((result) => {
-        console.log('oi');
+        console.log('result');
       })
       .then(() => {
         this.props.history.push('/');
@@ -97,7 +99,6 @@ export default class CreateProjectView extends Component {
             onChange={this.handleInputChange}
           />
           <br></br>
-
           <label htmlFor='picture'>Picture </label>
           <input
             type='file'
@@ -106,7 +107,6 @@ export default class CreateProjectView extends Component {
             onChange={this.handleFileInputChange}
           />
           <br></br>
-
           <label htmlFor='description'>Description </label>
           <input
             id='description'
@@ -116,7 +116,6 @@ export default class CreateProjectView extends Component {
             onChange={this.handleInputChange}
           />
           <br></br>
-
           <label htmlFor='location'>Location </label>
           <input
             id='location'
@@ -126,9 +125,19 @@ export default class CreateProjectView extends Component {
             onChange={this.handleInputChange}
           />
           <br></br>
+          <label htmlFor='category'>Choose a category:</label>
+          <select id='category' name='category' onChange={this.handleInputChange}>
+            <option value='Food'>Food</option>
+            <option value='Education'>Education</option>
+            <option value='Environment'>Environment</option>
+            <option value='Sanitation'>Sanitation</option>
+            <option value='Human Rights'>Human Rights</option>
+            <option value='Donation'>Donation</option>
+            <option value='Other'>Other</option>
+          </select>
 
+          <br></br>
           <h1>Needs: </h1>
-
           <label htmlFor='money'>Money: </label>
           <input
             type='number'
@@ -137,7 +146,6 @@ export default class CreateProjectView extends Component {
             value={this.state.money}
             onChange={this.handleInputChange}
           />
-
           <br></br>
         </form>
         <div>
