@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './styles.scss';
 import ProgressBar from './../../components/ProgressBar';
 import { getProjectById } from './../../services/project';
+import { Link } from 'react-router-dom';
 
 export class SingleProjectView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       project: null,
-      loaded: false,
+      loaded: false
     };
   }
 
@@ -19,7 +20,7 @@ export class SingleProjectView extends Component {
         console.log('project:', project);
         this.setState({
           loaded: true,
-          project: { ...project },
+          project: { ...project }
         });
       })
       .catch((error) => {
@@ -41,11 +42,16 @@ export class SingleProjectView extends Component {
           </>
         )}
         {project && (
-          <>
+          <div>
             <img src={project.coverPictureUrl} />
             <h1>{project.title}</h1>
             <small>{project.shortDescription}</small>
-          </>
+            {project.needs.money.total && (
+              <div>
+                <Link to={`/project/${project._id}/contribute`}>Contribute here</Link>
+              </div>
+            )}
+          </div>
         )}
       </div>
     );
