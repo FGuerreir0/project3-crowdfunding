@@ -13,7 +13,6 @@ class HomeView extends Component {
   }
 
   componentDidMount = () => {
-    console.log('mounted');
     this.fetchData();
   };
 
