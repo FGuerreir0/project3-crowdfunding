@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import './styles.scss';
-
+import ProgressBar from "./../../components/ProgressBar"
 import { getProjectById } from './../../services/project';
 
-class SingleProjectView extends Component {
+export class SingleProjectView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false,
-      project: null
+      project: null,
+      loaded: false
     };
   }
 
-  getSingleProject() {
+  loadSingleProject() {
     const id = this.props.match.params.id;
     getProjectById(id)
       .then((project) => {
@@ -27,29 +27,23 @@ class SingleProjectView extends Component {
   }
 
   componentDidMount() {
-    this.getSingleProject();
+    this.loadSingleProject();
   }
-
   render() {
     const project = this.state.project;
-
     return (
       <div>
-        {this.state.loaded && (
+        {!this.state.loaded && (
           <>
-            <span>Loading... </span>
+            <span>Loading...</span>
           </>
         )}
-
         {project && (
           <>
-            <img src={project.coverPictureUrl} alt={project.title} />
+            <ProgressBar />
+            <img src={project.coverPictureUrl} />
             <h1>{project.title}</h1>
-            <small>{/* TODO: Contribution - (Backed/Total) */}</small>
-            <div>
-              <h2>{project.location}</h2>
-              <p>{project.description}</p>
-            </div>
+            <small>{project.shortDescription}</small>
           </>
         )}
       </div>
