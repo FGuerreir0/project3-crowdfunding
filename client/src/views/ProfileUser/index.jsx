@@ -20,23 +20,35 @@ class ProfileUserView extends Component {
       });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('update');
+    console.log('history', this.props.location);
+  }
+
   render() {
+    let user;
+    if (this.props.location.user) {
+      user = this.props.location.user;
+    } else {
+      user = this.props.user;
+    }
+
     return (
       <div>
-        <img src={this.state.pictureUrl} alt='Profile' className='profile_img' />
-
+        <img src={user.pictureUrl} alt='Profile' className='profile_img' />
+        {this.props.location.state && <h1>{this.props.location.user.username} </h1>}
         <br></br>
-        <h1>{this.state.username}</h1>
+        <h1>{user.username}</h1>
         <br></br>
-        <h2>Email: {this.state.email}</h2>
-        <h2>Location: {this.state.location}</h2>
+        <h2>Email: {user.email}</h2>
+        <h2>Location: {user.location}</h2>
         <br></br>
-        <h2>About me: {this.state.bio}</h2>
+        <h2>About me: {user.bio}</h2>
         <br></br>
         <p>My Projects</p>
         <br></br>
         <p>Contributed Actions</p>
-        <Link to={`/user/${this.props.user._id}/edit`}>Edit</Link>
+        <Link to={`/user/${user._id}/edit`}>Edit</Link>
       </div>
     );
   }

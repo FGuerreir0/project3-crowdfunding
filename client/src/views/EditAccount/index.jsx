@@ -9,7 +9,6 @@ class EditAccountView extends Component {
   }
 
   handleInputChange = ({ target: { name, value } }) => {
-    console.log(this.state);
     this.setState({
       [name]: value,
     });
@@ -25,12 +24,13 @@ class EditAccountView extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.pictureUrl);
+
     const { _id, username, location, bio, pictureUrl } = this.state;
 
     updateUser({ _id, username, location, bio, pictureUrl })
       .then((user) => {
-        this.props.history.push(`/user/${user._id}`);
+        this.props.updateUser(user);
+        this.props.history.push({ pathname: `/user/${user._id}`, user });
       })
       .catch((error) => {
         console.log('This is the error');

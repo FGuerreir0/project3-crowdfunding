@@ -19,11 +19,10 @@ const getUserById = (id) => {
 
 const updateUser = (body) => {
   const form = new FormData();
-  form.append('username', body.usename);
+  form.append('username', body.username);
   form.append('location', body.location);
   form.append('bio', body.bio);
-  form.append('pictureUrl', body.pictureUrl);
-  console.log(body);
+  if (body.pictureUrl !== null) form.append('pictureUrl', body.pictureUrl);
 
   return baseUserService
     .post(`/${body._id}/edit`, form)

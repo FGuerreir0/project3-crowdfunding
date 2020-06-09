@@ -12,13 +12,13 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: 'project3'
-  }
+    folder: 'project3',
+  },
 });
 const uploader = multer({ storage });
 
@@ -39,16 +39,34 @@ profileRouter.get('/:id', (req, res, next) => {
 
 profileRouter.post('/:userId/edit', uploader.single('pictureUrl'), (req, res, next) => {
   const id = req.params.userId;
-
   const { username, location, bio } = req.body;
-  User.findByIdAndUpdate({ _id: id }, { username, location, bio, pictureUrl })
-    .then((result) => {
-      console.log(result);
-      res.json({ user: result });
-    })
-    .catch((error) => {
-      next(error);
-    });
+  let pictureUrl;
+  if (req.file) pictureUrl = req.file.path;
+
+  if (pictureUrl) {
+    User.findByIdAndUpdate({ _id: id }, { username, location, bio, pictureUrl })
+      .then((result) => {
+        result.username = username;
+        result.pictureUrl = pictureUrl;
+        result.bio = bio;
+        result.location = location;
+        res.json({ user: result });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  } else {
+    User.findByIdAndUpdate({ _id: id }, { username, location, bio })
+      .then((result) => {
+        result.username = username;
+        result.bio = bio;
+        result.location = location;
+        res.json({ user: result });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
 });
 
 //LIST USER SUPPORTED ACTIONS

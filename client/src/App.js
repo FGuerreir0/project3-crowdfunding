@@ -81,7 +81,7 @@ class App extends Component {
               <Route
                 exact
                 path='/user/:user_id/edit'
-                render={(props) => <EditProfileView {...props} user={this.state.user} />}
+                render={(props) => <EditProfileView {...props} user={this.state.user} updateUser={this.updateUser} />}
               />
 
               <Route
