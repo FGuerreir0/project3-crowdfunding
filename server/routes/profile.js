@@ -9,10 +9,8 @@ const User = require('./../models/user');
 //DON'T FORGET TO CONFIGURE MULTER AND CLOUDINARY
 
 //SINGLE VIEW
-profileRouter.get('/user/:userId', (req, res, next) => {
-  const id = req.params.userId;
-
-  User.findById(id)
+profileRouter.get('/:id', (req, res, next) => {
+  User.find({ _id: req.params.id })
     .then((result) => {
       res.json({ user: result });
     })
@@ -23,20 +21,18 @@ profileRouter.get('/user/:userId', (req, res, next) => {
 
 // EDIT USER PROFILE
 
-profileRouter.get('/user/:userId/edit', (req, res, next) => {
+profileRouter.post('/:userId/edit', (req, res, next) => {
   const id = req.params.userId;
-
-  User.findById(id)
+  const { username, location, bio } = req.body;
+  console.log(username, location, bio);
+  User.findByIdAndUpdate({ _id: id }, { username, location, bio })
     .then((result) => {
+      console.log(result);
       res.json({ user: result });
     })
     .catch((error) => {
       next(error);
     });
-});
-
-profileRouter.post('/user/:userId/edit', (req, res, next) => {
-  res.json({});
 });
 
 //LIST USER SUPPORTED ACTIONS

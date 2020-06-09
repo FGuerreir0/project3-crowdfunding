@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 const baseUserService = axios.create({
-  baseURL: '/user',
+  baseURL: '/api/user'
 });
 
 const getUserById = (id) => {
+  console.log(id);
   return baseUserService
-    .get(`/${id}`)
+    .get(`/${id}`, id)
     .then((result) => {
       const user = result.data.user;
       return Promise.resolve(user);
@@ -18,7 +19,8 @@ const getUserById = (id) => {
 
 const updateUser = (body) => {
   return baseUserService
-    .post(`/${body.id}/edit`, body)
+
+    .post(`/${body._id}/edit`, body)
     .then((result) => {
       const user = result.data.user;
       return Promise.resolve(user);
@@ -51,3 +53,5 @@ const getProjectsByUserId = (userId) => {
       return Promise.reject(err);
     });
 };
+
+export { getProjectsByUserId, getActionsByUserId, updateUser, getUserById };

@@ -24,8 +24,9 @@ const schema = new mongoose.Schema({
     default:
       'https://res.cloudinary.com/fguerreir0/image/upload/v1591445011/Sample/defaultuser_kvhkdf.png'
   },
-  birthday: {
-    type: String
+  bio: {
+    type: String,
+    maxlength: 150
   }
 });
 
