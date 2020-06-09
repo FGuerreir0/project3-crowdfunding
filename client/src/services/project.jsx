@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseProjectService = axios.create({
-  baseURL: '/api/project',
+  baseURL: '/api/project'
 });
 
 const getAllprojects = () => {
@@ -53,9 +53,11 @@ const getProjectByCategory = (category) => {
 };
 
 const createProject = (data) => {
+  console.log(data);
   const form = new FormData();
   form.append('title', data.title);
   form.append('description', data.description);
+  form.append('category', data.category);
   form.append('money', data.money);
   form.append('resources', JSON.stringify(data.resources));
   form.append('volunteer', JSON.stringify(data.volunteer));

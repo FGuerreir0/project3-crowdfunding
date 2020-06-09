@@ -31,16 +31,7 @@ const schema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: [
-        'food',
-        'education',
-        'fashion',
-        'sanitation',
-        'environment',
-        'recycling',
-        'donation',
-        'others'
-      ]
+      enum: ['Food', 'Education', 'Sanitation', 'Environment', 'Human Rights', 'Donation', 'Other']
     },
     backers: [
       {
