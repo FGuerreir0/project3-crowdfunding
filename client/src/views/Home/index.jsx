@@ -8,11 +8,12 @@ class HomeView extends Component {
   constructor() {
     super();
     this.state = {
-      projects: []
+      projects: [],
     };
   }
 
   componentDidMount = () => {
+    console.log('mounted');
     this.fetchData();
   };
 
@@ -20,7 +21,7 @@ class HomeView extends Component {
     getAllprojects()
       .then((list) => {
         this.setState({
-          projects: list
+          projects: [...list],
         });
       })
       .catch((error) => {
@@ -29,7 +30,7 @@ class HomeView extends Component {
   }
 
   render() {
-    console.log(this.state.projects);
+    console.log(' list de project', this.state.projects);
     return (
       <div>
         <div>

@@ -11,6 +11,7 @@ class ProfileUserView extends Component {
 
   componentDidMount = (props) => {
     let id = this.props.user._id;
+    console.log('param', this.props.match.params);
     getUserById(id)
       .then((user) => {
         this.setState = { ...user[0] };
@@ -30,13 +31,12 @@ class ProfileUserView extends Component {
     if (this.props.location.user) {
       user = this.props.location.user;
     } else {
-      user = this.props.user;
+      user = this.state.user;
     }
 
     return (
       <div>
         <img src={user.pictureUrl} alt='Profile' className='profile_img' />
-        {this.props.location.state && <h1>{this.props.location.user.username} </h1>}
         <br></br>
         <h1>{user.username}</h1>
         <br></br>
