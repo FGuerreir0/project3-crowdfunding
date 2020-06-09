@@ -26,8 +26,9 @@ const uploader = multer({ storage });
 
 //SINGLE VIEW
 profileRouter.get('/:id', (req, res, next) => {
-  User.find({ _id: req.params.id })
+  User.findById(req.params.id)
     .then((result) => {
+      console.log('server', result);
       res.json({ user: result });
     })
     .catch((error) => {
