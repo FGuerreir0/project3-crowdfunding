@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const baseProjectService = axios.create({
-  baseURL: '/api/project',
+  baseURL: '/api/project'
 });
 
 const getAllprojects = () => {
   return baseProjectService
-    .get('/')
+    .get('/list')
     .then((result) => {
       const projects = result.data.projects;
       return Promise.resolve(projects);

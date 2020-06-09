@@ -11,19 +11,29 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: 'project3',
-  },
+    folder: 'project3'
+  }
 });
 const uploader = multer({ storage });
 
-//LIST PROJECTS BY CATEGORY
-projectRouter.get('/category/:name', (req, res, next) => {
-  res.json({});
+//LIST ALL PROJECTS
+projectRouter.get('/list', (req, res, next) => {
+  Project.find()
+    .populate('creator')
+    .sort({ createdDate: -1 })
+    .then((result) => {
+      res.json({
+        projects: result
+      });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 //SINGLE VIEW
@@ -43,6 +53,7 @@ projectRouter.post('/:projectId/edit', (req, res, next) => {
 //CREATE PROJECT
 
 projectRouter.post('/create', uploader.single('coverPictureUrl'), (req, res, next) => {
+  console.log(req.user._id);
   const { title, description, location, money, resources, volunteer } = req.body;
 
   let coverPictureUrl;
@@ -50,16 +61,17 @@ projectRouter.post('/create', uploader.single('coverPictureUrl'), (req, res, nex
 
   Project.create({
     title,
+    creator: req.user._id,
     shortDescription: description,
     location,
     needs: {
       money: {
-        total: money,
+        total: money
       },
       resources: JSON.parse(resources),
-      volunteer: JSON.parse(volunteer),
+      volunteer: JSON.parse(volunteer)
     },
-    coverPictureUrl,
+    coverPictureUrl
   })
     .then((result) => {
       console.log('obj create: ', result);
