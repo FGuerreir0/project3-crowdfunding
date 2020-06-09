@@ -66,13 +66,13 @@ const schema = new mongoose.Schema(
       volunteer: [
         {
           name: {
-            type: Number,
+            type: String,
           },
           backed: {
             type: Number,
           },
           quantity: {
-            type: String,
+            type: Number,
           },
         },
       ],

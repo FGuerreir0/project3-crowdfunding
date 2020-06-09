@@ -13,7 +13,6 @@ class ProfileUserView extends Component {
     let id = this.props.user._id;
     getUserById(id)
       .then((user) => {
-        console.log(user[0]);
         this.setState = { ...user[0] };
       })
       .catch((error) => {

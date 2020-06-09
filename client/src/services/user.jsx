@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseUserService = axios.create({
-  baseURL: '/api/user'
+  baseURL: '/api/user',
 });
 
 const getUserById = (id) => {
@@ -18,9 +18,15 @@ const getUserById = (id) => {
 };
 
 const updateUser = (body) => {
-  return baseUserService
+  const form = new FormData();
+  form.append('username', body.usename);
+  form.append('location', body.location);
+  form.append('bio', body.bio);
+  form.append('pictureUrl', body.pictureUrl);
+  console.log(body);
 
-    .post(`/${body._id}/edit`, body)
+  return baseUserService
+    .post(`/${body._id}/edit`, form)
     .then((result) => {
       const user = result.data.user;
       return Promise.resolve(user);

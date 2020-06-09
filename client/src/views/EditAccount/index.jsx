@@ -8,28 +8,32 @@ class EditAccountView extends Component {
     this.state = { ...props.user };
   }
 
-  updateInputValue = (e) => {
-    const {
-      target: { value },
-    } = e;
-    this.setState({ username: value });
-  };
-
   handleInputChange = ({ target: { name, value } }) => {
+    console.log(this.state);
     this.setState({
       [name]: value,
     });
   };
 
+  handleFileInputChange = (event) => {
+    const { name } = event.target;
+    const file = event.target.files[0];
+    this.setState({
+      [name]: file,
+    });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
+    console.log(this.state.pictureUrl);
+    const { _id, username, location, bio, pictureUrl } = this.state;
 
-    const { _id, username, location, bio } = this.state;
-    updateUser({ _id, username, location, bio })
+    updateUser({ _id, username, location, bio, pictureUrl })
       .then((user) => {
         this.props.history.push(`/user/${user._id}`);
       })
       .catch((error) => {
+        console.log('This is the error');
         console.log(error);
       });
   };
@@ -63,6 +67,10 @@ class EditAccountView extends Component {
             value={this.state.bio}
             onChange={this.handleInputChange}
           />
+
+          <label htmlFor='pictureUrl'>Picture </label>
+          <input type='file' name='pictureUrl' id='pictureUrl' onChange={this.handleFileInputChange} />
+
           <button>Submit</button>
         </form>
       </div>
