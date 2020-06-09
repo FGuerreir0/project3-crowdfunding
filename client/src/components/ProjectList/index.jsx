@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
 import formatDate from './../../helper/formatDate';
+import ProgressBar from './../../components/ProgressBar';
 
 const ProjectsList = (props) => {
   return (
@@ -18,7 +19,11 @@ const ProjectsList = (props) => {
           <div className='project_information'>
             <h2>{project.title}</h2>
             <p>{project.shortDescription}</p>
-            <p>Show ProgressBar</p>
+            {project.needs.money.total && (
+              <div>
+                <ProgressBar project={project} />
+              </div>
+            )}
           </div>
           <div className='anchor_style'>
             <Link to={`/project/${project._id}`}>Read more here</Link>
