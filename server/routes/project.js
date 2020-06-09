@@ -56,7 +56,6 @@ projectRouter.post('/create', uploader.single('coverPictureUrl'), (req, res, nex
 
   let coverPictureUrl;
   if (req.file) coverPictureUrl = req.file.path;
-  //console.log(resources);
 
   Project.create({
     title,
