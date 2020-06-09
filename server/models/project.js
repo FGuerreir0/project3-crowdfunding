@@ -88,7 +88,7 @@ const schema = new mongoose.Schema(
     }
   },
   {
-    Timestamps: {
+    timestamps: {
       createdAt: 'createdDate',
       updatedAt: 'updatedDate'
     }

@@ -24,6 +24,8 @@ const uploader = multer({ storage });
 //LIST ALL PROJECTS
 projectRouter.get('/list', (req, res, next) => {
   Project.find()
+    .populate('creator')
+    .sort({ createdDate: -1 })
     .then((result) => {
       res.json({
         projects: result

@@ -10,9 +10,14 @@ const ProjectsList = (props) => {
           <div>
             <div>
               <img src={project.coverPictureUrl} alt={project.title} />
+              <div>
+                <small>Created by: {project.creator.username}</small>
+                <small>Date:{project.updatedDate}</small>
+              </div>
             </div>
-            <div className='body'>
-              <span>{project.shortDescription}</span>
+            <div>
+              <h2>{project.title}</h2>
+              <p>{project.shortDescription}</p>
             </div>
           </div>
         </Link>
