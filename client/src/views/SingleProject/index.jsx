@@ -47,7 +47,7 @@ export class SingleProjectView extends Component {
             <h1>{project.title}</h1>
             <small>{project.shortDescription}</small>
             {project.needs.money.total && (
-              <div className='text-center mt-10 '>
+              <div className='text-center mt-10 mb-10'>
                 <ProgressBar project={project} />
                 <Link
                   className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'
