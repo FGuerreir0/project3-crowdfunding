@@ -17,6 +17,7 @@ const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const profileRouter = require('./routes/profile');
 const projectRouter = require('./routes/project');
+const paymentContributionRouter = require('./routes/paymentContribution');
 
 const app = express();
 
@@ -33,19 +34,19 @@ app.use(
       maxAge: 60 * 60 * 24 * 15 * 1000,
       sameSite: 'lax',
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === 'production'
     },
     store: new (connectMongo(expressSession))({
       mongooseConnection: mongoose.connection,
-      ttl: 60 * 60 * 24,
-    }),
+      ttl: 60 * 60 * 24
+    })
   })
 );
 
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:3000'], // <== this will be the URL of our React app (it will be running on port 3000)
+    origin: ['http://localhost:3000'] // <== this will be the URL of our React app (it will be running on port 3000)
   })
 );
 
@@ -53,6 +54,7 @@ app.use(basicAuthenticationDeserializer);
 
 app.use('/', indexRouter);
 app.use('/api/authentication', authenticationRouter);
+app.use('/api/contributionPayment', paymentContributionRouter);
 app.use('/api/project', projectRouter);
 app.use('/api/user', profileRouter);
 

@@ -45,6 +45,7 @@ class RegisterView extends Component {
             <label htmlFor='username'>Username</label>
             <br></br>
             <input
+              required
               id='username'
               name='username'
               type='text'
@@ -57,6 +58,7 @@ class RegisterView extends Component {
             <label htmlFor='email-input'>Email</label>
             <br></br>
             <input
+              required
               id='email'
               name='email'
               type='email'
@@ -69,6 +71,7 @@ class RegisterView extends Component {
             <label htmlFor='password-input'>Password</label>
             <br></br>
             <input
+              required
               id='password'
               name='password'
               type='password'
@@ -78,7 +81,9 @@ class RegisterView extends Component {
             />
           </div>
           <div className='input-container'>
-            <button>Register</button>
+            <button className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'>
+              Register
+            </button>
           </div>
           <div>
             <small className='smaller-container'>

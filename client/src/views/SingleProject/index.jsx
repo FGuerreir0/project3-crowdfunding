@@ -48,7 +48,8 @@ export class SingleProjectView extends Component {
             <small>{project.shortDescription}</small>
             {project.needs.money.total && (
               <div>
-                <Link to={`/project/${project._id}/contribute`}>Contribute here</Link>
+                <ProgressBar project={project} />
+                <Link to={`/project/${project._id}/contribute`}>Support this cause</Link>
               </div>
             )}
           </div>
