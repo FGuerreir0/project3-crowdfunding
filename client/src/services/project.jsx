@@ -28,6 +28,18 @@ const getProjectById = (id) => {
     });
 };
 
+const deleteProjectById = (id) => {
+  return baseProjectService
+    .get(`/${id}/delete`)
+    .then((result) => {
+      const project = result.data.project;
+      return Promise.resolve(project);
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
+};
+
 const updateProject = (body) => {
   console.log(body)
   const form = new FormData();
@@ -80,4 +92,11 @@ const createProject = (data) => {
     });
 };
 
-export { createProject, getAllprojects, getProjectByCategory, getProjectById, updateProject };
+export {
+  createProject,
+  getAllprojects,
+  getProjectByCategory,
+  getProjectById,
+  updateProject,
+  deleteProjectById
+};
