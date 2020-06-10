@@ -5,6 +5,7 @@ const profileRouter = new Router();
 const routeGuard = require('./../middleware/route-guard');
 
 const User = require('./../models/user');
+const Project = require('./../models/project');
 
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
@@ -26,10 +27,19 @@ const uploader = multer({ storage });
 
 //SINGLE VIEW
 profileRouter.get('/:id', (req, res, next) => {
+  let _user;
+  let _projects;
   User.findById(req.params.id)
     .then((result) => {
-      console.log('server', result);
-      res.json({ user: result });
+      _user = result;
+      return Project.find({ creator: req.params.id });
+    })
+    .then((projects) => {
+      _projects = projects;
+      return Project.find({ 'backers.userId': req.params.id });
+    })
+    .then((_actions) => {
+      res.json({ user: _user, projects: _projects, actions: _actions });
     })
     .catch((error) => {
       next(error);

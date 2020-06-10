@@ -1,0 +1,32 @@
+.card {
+  min-width: 200px;
+  height: 200px;
+  border-radius: 15px;
+  background-color: white;
+  margin: 15px 20px 15px 5px;
+  //background-color: #c7e4ff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.title {
+  padding: 5px 15px 10px;
+  font-size: 1.2em;
+  height: 20%;
+  font-weight: bold;
+}
+
+.description {
+  padding: 10px 15px 0;
+  background-color: white;
+  height: 60%;
+}
+
+.footer {
+  padding: 10px 15px 10px;
+}

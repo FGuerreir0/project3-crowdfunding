@@ -9,7 +9,7 @@ export class SingleProjectView extends Component {
     super(props);
     this.state = {
       project: null,
-      loaded: false
+      loaded: false,
     };
   }
 
@@ -20,7 +20,7 @@ export class SingleProjectView extends Component {
         console.log('project:', project);
         this.setState({
           loaded: true,
-          project: { ...project }
+          project: { ...project },
         });
       })
       .catch((error) => {
@@ -33,7 +33,7 @@ export class SingleProjectView extends Component {
   }
   render() {
     const project = this.state.project;
-    console.log(project);
+
     return (
       <div>
         {!this.state.loaded && (
