@@ -49,12 +49,21 @@ projectRouter.get('/:projectId', (req, res, next) => {
 });
 
 //PROJECT EDIT
-projectRouter.get('/:projectId/edit', (req, res, next) => {
-  res.json({});
-});
 
-projectRouter.post('/:projectId/edit', (req, res, next) => {
-  res.json({});
+projectRouter.post('/:projectId/edit', uploader.single('coverPictureUrl'), (req, res, next) => {
+  const { id, title, description, location, coverPictureUrl } = req.body;
+
+  Project.findByIdAndUpdate({ _id: id }, { title, description, location, coverPictureUrl })
+    .then((result) => {
+      result.title = title;
+      result.description = description;
+      result.location = location;
+      result.coverPictureUrl = coverPictureUrl;
+      res.json({ project: result });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 //CREATE PROJECT
