@@ -83,7 +83,13 @@ class App extends Component {
               <Route
                 exact
                 path='/create'
-                render={(props) => <CreateProjectView {...props} user={this.state.user} />}
+                render={(props) => (
+                  <CreateProjectView
+                    {...props}
+                    user={this.state.user}
+                    updateUser={this.updateUser}
+                  />
+                )}
               />
 
               <Route
@@ -106,7 +112,7 @@ class App extends Component {
               <Route
                 exact
                 path='/project/:project_id/contribute'
-                render={(props) => <ContributeMoneyView {...props} updateUser={this.updateUser} />}
+                render={(props) => <ContributeMoneyView {...props} user={this.state.user} />}
               />
 
               {/* PROFILE ROUTES*/}

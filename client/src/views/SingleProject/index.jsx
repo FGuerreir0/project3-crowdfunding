@@ -47,8 +47,14 @@ export class SingleProjectView extends Component {
             <h1>{project.title}</h1>
             <small>{project.shortDescription}</small>
             {project.needs.money.total && (
-              <div>
-                <Link to={`/project/${project._id}/contribute`}>Contribute here</Link>
+              <div className='text-center mt-10 '>
+                <ProgressBar project={project} />
+                <Link
+                  className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'
+                  to={`/project/${project._id}/contribute`}
+                >
+                  Support this cause
+                </Link>
               </div>
             )}
           </div>

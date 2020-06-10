@@ -44,6 +44,7 @@ export default class LoginView extends Component {
             <label htmlFor='email-input'>Email: </label>
             <br></br>
             <input
+              required
               id='email'
               name='email'
               type='email'
@@ -56,6 +57,7 @@ export default class LoginView extends Component {
             <label htmlFor='password-input'>Password: </label>
             <br></br>
             <input
+              required
               id='password'
               name='password'
               type='password'
@@ -65,7 +67,9 @@ export default class LoginView extends Component {
             />
           </div>
           <div className='input-container'>
-            <button>Login</button>
+            <button className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'>
+              Login
+            </button>
           </div>
           <div className='no-account'>
             <small>

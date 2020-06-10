@@ -8,7 +8,7 @@ class HomeView extends Component {
   constructor() {
     super();
     this.state = {
-      projects: [],
+      projects: []
     };
   }
 
@@ -20,7 +20,7 @@ class HomeView extends Component {
     getAllprojects()
       .then((list) => {
         this.setState({
-          projects: [...list],
+          projects: [...list]
         });
       })
       .catch((error) => {
@@ -29,11 +29,15 @@ class HomeView extends Component {
   }
 
   render() {
-    console.log(' list de project', this.state.projects);
     return (
       <div>
-        <div>
-          <Link to='/create'>Create a Cause</Link>
+        <div className='mt-16 mb-16 text-center'>
+          <Link
+            className=' text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded '
+            to='/create'
+          >
+            Create a Cause
+          </Link>
         </div>
         <ProjectsList projects={this.state.projects} />
       </div>

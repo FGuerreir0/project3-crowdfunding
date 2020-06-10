@@ -6,19 +6,29 @@ import ProgressBar from './../../components/ProgressBar';
 
 const ProjectsList = (props) => {
   return (
-    <div>
+    <div className='mr-16 ml-16'>
       {props.projects.map((project) => (
         <div key={project._id}>
           <div>
-            <img src={project.coverPictureUrl} alt={project.title} />
+            <img
+              className='object-cover h-48 w-full ...'
+              src={project.coverPictureUrl}
+              alt={project.title}
+            />
             <div className='project_dateCreator'>
-              <small>Created by: {project.creator.username}</small>
-              <small>Date:{formatDate(project.updatedDate)}</small>
+              <small>
+                <strong>Created by: </strong>
+                {project.creator.username}
+              </small>
+              <small>
+                <strong>Date: </strong>
+                {formatDate(project.updatedDate)}
+              </small>
             </div>
           </div>
           <div className='project_information'>
-            <h2>{project.title}</h2>
-            <p>{project.shortDescription}</p>
+            <h2 className='text-3xl'>{project.title}</h2>
+            <p className='text-base'>{project.shortDescription}</p>
             {project.needs.money.total && (
               <div>
                 <ProgressBar project={project} />
@@ -28,6 +38,7 @@ const ProjectsList = (props) => {
           <div className='anchor_style'>
             <Link to={`/project/${project._id}`}>Read more here</Link>
           </div>
+          <hr className='mt-8 mb-8 border-1 border-gray-400'></hr>
         </div>
       ))}
     </div>
