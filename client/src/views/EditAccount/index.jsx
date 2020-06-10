@@ -10,7 +10,7 @@ class EditAccountView extends Component {
 
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -18,7 +18,7 @@ class EditAccountView extends Component {
     const { name } = event.target;
     const file = event.target.files[0];
     this.setState({
-      [name]: file,
+      [name]: file
     });
   };
 
@@ -69,7 +69,12 @@ class EditAccountView extends Component {
           />
 
           <label htmlFor='pictureUrl'>Picture </label>
-          <input type='file' name='pictureUrl' id='pictureUrl' onChange={this.handleFileInputChange} />
+          <input
+            type='file'
+            name='pictureUrl'
+            id='pictureUrl'
+            onChange={this.handleFileInputChange}
+          />
 
           <button>Submit</button>
         </form>

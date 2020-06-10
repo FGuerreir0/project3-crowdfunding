@@ -29,8 +29,9 @@ class EditProjectView extends Component {
 
     updateProject({ _id, title, description, location, coverPictureUrl })
       .then((project) => {
-        this.props.updateProject(project);
+        updateProject(project);
         this.props.history.push({ pathname: `/project/${project._id}`, project });
+        console.log(this.state.props);
       })
       .catch((error) => {
         console.log(error);
@@ -38,6 +39,9 @@ class EditProjectView extends Component {
   };
 
   render() {
+    {
+      /*console.log(this.props.match.params);*/
+    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -72,7 +76,6 @@ class EditProjectView extends Component {
             type='file'
             name='coverPictureUrl'
             id='coverPictureUrl'
-            value={this.state.coverPictureUrl}
             onChange={this.handleFileInputChange}
           />
 
