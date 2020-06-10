@@ -29,14 +29,15 @@ const getProjectById = (id) => {
 };
 
 const updateProject = (body) => {
+  console.log(body)
   const form = new FormData();
   form.append('title', body.title);
   form.append('description', body.description);
   form.append('location', body.location);
   if (body.coverPictureUrl !== null) form.append('coverPictureUrl', body.coverPictureUrl);
-  
+
   return baseProjectService
-    .post(`/${body._id}/edit`, form)
+    .post(`/${body.id}/edit`, form)
     .then((result) => {
       const project = result.data.project;
       return Promise.resolve(project);
