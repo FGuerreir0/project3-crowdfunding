@@ -52,21 +52,36 @@ projectRouter.get('/:projectId', (req, res, next) => {
 //PROJECT EDIT
 
 projectRouter.post('/:projectId/edit', uploader.single('coverPictureUrl'), (req, res, next) => {
-  const { id, title, description, location, coverPictureUrl } = req.body;
+  const id = req.params.projectId;
+  const { title, location, description } = req.body;
+  let coverPictureUrl;
+  if (req.file) coverPictureUrl = req.file.path;
 
-  Project.findByIdAndUpdate({ _id: id }, { title, description, location, coverPictureUrl })
-    .then((result) => {
-      result.title = title;
-      result.description = description;
-      result.location = location;
-      result.coverPictureUrl = coverPictureUrl;
-      res.json({ project: result });
-    })
-    .catch((error) => {
-      next(error);
-    });
+  if (coverPictureUrl) {
+    Project.findByIdAndUpdate({ _id: id }, { title, location, description, coverPictureUrl })
+      .then((result) => {
+        result.title = title;
+        result.coverPictureUrl = coverPictureUrl;
+        result.description = description;
+        result.location = location;
+        res.json({ project: result });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  } else {
+    Project.findByIdAndUpdate({ _id: id }, { title, location, description })
+      .then((result) => {
+        result.title = title;
+        result.description = description;
+        result.location = location;
+        res.json({ project: result });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
 });
-
 //CREATE PROJECT
 
 projectRouter.post('/create', uploader.single('coverPictureUrl'), (req, res, next) => {
