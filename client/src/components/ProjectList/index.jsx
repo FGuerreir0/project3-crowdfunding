@@ -36,7 +36,7 @@ const ProjectsList = (props) => {
             )}
           </div>
           <div className='anchor_style'>
-            <Link to={`/project/${project._id}`}>Read more here</Link>
+            {props.user && <Link to={`/project/${project._id}`}>Read more here</Link>}
           </div>
           <hr className='mt-8 mb-8 border-1 border-gray-400'></hr>
         </div>

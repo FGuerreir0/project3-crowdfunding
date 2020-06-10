@@ -11,7 +11,7 @@ class ProfileUserView extends Component {
       user: null,
       loaded: false,
       isOwner: false,
-      projects: [],
+      projects: []
     };
   }
 
@@ -26,7 +26,7 @@ class ProfileUserView extends Component {
           user: result.user,
           loaded: true,
           isOwner,
-          projects: [...result.projects],
+          projects: [...result.projects]
         });
       })
       .catch((error) => {
@@ -57,7 +57,7 @@ class ProfileUserView extends Component {
               <p className='email'>{user.email}</p>
               <p className='aboutme'>{user.bio}</p>
               <p className='location'>
-                <i class='fas fa-map-marker-alt'> </i>
+                <i className='fas fa-map-marker-alt'> </i>
                 {' ' + user.location}
               </p>
 

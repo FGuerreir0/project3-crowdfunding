@@ -60,7 +60,9 @@ class App extends Component {
               <Route
                 exact
                 path='/'
-                render={(props) => <HomeView {...props} updateUser={this.updateUser} />}
+                render={(props) => (
+                  <HomeView {...props} user={this.state.user} updateUser={this.updateUser} />
+                )}
               />
               {/* AUTHENTICATION ROUTES*/}
               <Route
