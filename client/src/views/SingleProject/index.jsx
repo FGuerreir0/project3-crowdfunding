@@ -35,21 +35,19 @@ export class SingleProjectView extends Component {
     this.loadSingleProject();
   }
 
-  handleDelete() {
+  handleDelete = () => {
     this.deleteProject();
-  }
+  };
 
   deleteProject() {
     const id = this.props.match.params.project_id;
+    console.log('vamos eliminar', id);
     deleteProjectById(id)
       .then((project) => {
-        console.log('project:', project);
-        this.setState({
-          loaded: true,
-          project: { ...project }
-        });
+        this.props.history.push(`/`);
       })
       .catch((error) => {
+        console.log('This is the error');
         console.log(error);
       });
   }
@@ -58,7 +56,8 @@ export class SingleProjectView extends Component {
     const project = this.state.project;
     let haveResources = false;
     let haveVolunteers = false;
-    console.log(this.state.project);
+    let iscreator = false;
+    console.log(this.props);
 
     if (project) {
       if (project.needs.resources.length !== 0) {

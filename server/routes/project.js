@@ -124,4 +124,17 @@ projectRouter.post('/:projectId/contribute', (req, res, next) => {
   res.json({});
 });
 
+//PROJECT DELETE
+
+projectRouter.get('/:projectId/delete', (req, res, next) => {
+  const id = req.params.projectId;
+  Project.findByIdAndDelete(id)
+    .then((result) => {
+      res.json({});
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = projectRouter;

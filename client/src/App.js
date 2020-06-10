@@ -100,7 +100,7 @@ class App extends Component {
               <Route
                 exact
                 path='/project/:project_id'
-                render={(props) => <SingleProjectView {...props} />}
+                render={(props) => <SingleProjectView {...props} user={this.state.user} />}
               />
 
               <Route
