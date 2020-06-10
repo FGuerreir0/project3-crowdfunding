@@ -10,8 +10,10 @@ class EditProjectView extends Component {
 
   handleInputChange = ({ target: { name, value } }) => {
     console.log(this.state.project);
+    const newProject = { ...this.state.project };
+    newProject[name] = value;
     this.setState({
-      project: { [name]: value }
+      project: newProject,
     });
   };
 
@@ -22,7 +24,7 @@ class EditProjectView extends Component {
         console.log('project:', project);
         this.setState({
           loaded: true,
-          project: { ...project }
+          project: { ...project },
         });
       })
       .catch((error) => {
@@ -37,8 +39,10 @@ class EditProjectView extends Component {
   handleFileInputChange = (event) => {
     const { name } = event.target;
     const file = event.target.files[0];
+    const newProject = { ...this.state.project };
+    newProject[name] = file;
     this.setState({
-      project: { [name]: file }
+      project: newProject,
     });
   };
 
@@ -48,7 +52,7 @@ class EditProjectView extends Component {
     const id = this.props.match.params.project_id;
     const { title, location, shortDescription, coverPictureUrl } = this.state.project;
 
-    console.log(this.state);
+    console.log(title, location, shortDescription, coverPictureUrl);
     updateProject({ id, title, location, shortDescription, coverPictureUrl })
       .then((project) => {
         this.props.history.push(`/project/${id}`);
@@ -98,12 +102,7 @@ class EditProjectView extends Component {
             />
 
             <label htmlFor='coverPictureUrl'>Cover Picture</label>
-            <input
-              type='file'
-              name='coverPictureUrl'
-              id='coverPictureUrl'
-              onChange={this.handleFileInputChange}
-            />
+            <input type='file' name='coverPictureUrl' id='coverPictureUrl' onChange={this.handleFileInputChange} />
 
             <button> Submit </button>
           </form>

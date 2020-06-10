@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseProjectService = axios.create({
-  baseURL: '/api/project'
+  baseURL: '/api/project',
 });
 
 const getAllprojects = () => {
@@ -41,10 +41,10 @@ const deleteProjectById = (id) => {
 };
 
 const updateProject = (body) => {
-  console.log(body)
+  console.log(body);
   const form = new FormData();
   form.append('title', body.title);
-  form.append('description', body.description);
+  form.append('shortDescription', body.shortDescription);
   form.append('location', body.location);
   if (body.coverPictureUrl !== null) form.append('coverPictureUrl', body.coverPictureUrl);
 
@@ -92,11 +92,4 @@ const createProject = (data) => {
     });
 };
 
-export {
-  createProject,
-  getAllprojects,
-  getProjectByCategory,
-  getProjectById,
-  updateProject,
-  deleteProjectById
-};
+export { createProject, getAllprojects, getProjectByCategory, getProjectById, updateProject, deleteProjectById };
