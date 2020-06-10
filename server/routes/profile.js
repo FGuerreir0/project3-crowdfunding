@@ -30,6 +30,7 @@ profileRouter.get('/:id', (req, res, next) => {
   let _user;
   let _projects;
   User.findById(req.params.id)
+    .populate('creator')
     .then((result) => {
       _user = result;
       return Project.find({ creator: req.params.id });
