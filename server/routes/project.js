@@ -40,6 +40,7 @@ projectRouter.get('/list', (req, res, next) => {
 projectRouter.get('/:projectId', (req, res, next) => {
   const id = req.params.projectId;
   Project.findById(id)
+    .populate('creator')
     .then((result) => {
       res.json({ project: result });
     })
