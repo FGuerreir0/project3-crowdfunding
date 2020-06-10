@@ -28,7 +28,7 @@ const ProjectsList = (props) => {
           </div>
           <div className='project_information'>
             <h2 className='text-3xl'>{project.title}</h2>
-            <p className='text-base'>{project.shortDescription}</p>
+            <p className='text-base limitLines'>{project.shortDescription}</p>
             {project.needs.money.total && (
               <div>
                 <ProgressBar project={project} />
