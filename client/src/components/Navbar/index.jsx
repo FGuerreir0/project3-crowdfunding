@@ -17,15 +17,15 @@ const NavBar = (props) => {
   return (
     <nav className='navbar'>
       <Link to='/'>
-        <div className='logo'>
-          <img src='#' alt='Logo' />
+        <div className='logoImage'>
+          <img src={process.env.PUBLIC_URL + '/images/navbar.png'} alt='Logo' />
         </div>
       </Link>
 
       {(props.user && (
         <>
           <Link to={`/user/${props.user._id}`}>
-            <img src={props.user.pictureUrl} alt={props.user.username} />
+            <img className='profileImage' src={props.user.pictureUrl} alt={props.user.username} />
             <span> {props.user.username}</span>
           </Link>
           <Link to={'/'}>

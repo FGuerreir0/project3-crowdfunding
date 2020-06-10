@@ -26,7 +26,7 @@ export default class LoginView extends Component {
     login({ email, password })
       .then((user) => {
         //console.log(user);
-        console.log('Login: Success');
+        //console.log('Login: Success');
         this.props.updateUser(user);
         this.props.history.push('/');
       })
@@ -37,9 +37,15 @@ export default class LoginView extends Component {
 
   render() {
     return (
-      <div className='login-container'>
-        <img src='#' alt='Logo image' />
-        <form onSubmit={this.handleFormSubmission}>
+      <div className='login-container sm:text-center lg:flex flex-row'>
+        <div>
+          <img
+            src={process.env.PUBLIC_URL + '/images/generalogo.png'}
+            alt='Logo'
+            className='logoImageBodyLogin'
+          />
+        </div>
+        <form onSubmit={this.handleFormSubmission} className='border-2'>
           <div className='input-container'>
             <label htmlFor='email-input'>Email: </label>
             <br></br>
@@ -49,7 +55,7 @@ export default class LoginView extends Component {
               id='email'
               name='email'
               type='email'
-              placeholder='Email'
+              placeholder='Inser email here'
               value={this.state.email}
               onChange={this.handleInputChange}
             />
@@ -63,7 +69,7 @@ export default class LoginView extends Component {
               id='password'
               name='password'
               type='password'
-              placeholder='Password'
+              placeholder='Insert password here'
               value={this.state.password}
               onChange={this.handleInputChange}
             />

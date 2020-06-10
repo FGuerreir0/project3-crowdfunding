@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import percentageCalc from './../../helper/percentageCalculator';
 
 export class ProgressBar extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    console.log(this.props);
+  render(props) {
     return (
       <div>
         <div className='relative pt-1 mr-16 ml-16'>

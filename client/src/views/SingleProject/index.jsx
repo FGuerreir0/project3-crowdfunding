@@ -20,7 +20,7 @@ export class SingleProjectView extends Component {
     const id = this.props.match.params.project_id;
     getProjectById(id)
       .then((project) => {
-        console.log('project:', project);
+        //  console.log('project:', project);
         this.setState({
           loaded: true,
           project: { ...project }
@@ -41,13 +41,13 @@ export class SingleProjectView extends Component {
 
   deleteProject() {
     const id = this.props.match.params.project_id;
-    console.log('vamos eliminar', id);
+    // console.log('vamos eliminar', id);
     deleteProjectById(id)
       .then((project) => {
         this.props.history.push(`/`);
       })
       .catch((error) => {
-        console.log('This is the error');
+        // console.log('This is the error');
         console.log(error);
       });
   }
@@ -57,7 +57,7 @@ export class SingleProjectView extends Component {
     let haveResources = false;
     let haveVolunteers = false;
     let iscreator = false;
-    console.log(this.props.user);
+    // console.log(this.props.user);
 
     if (project) {
       if (project.needs.resources.length !== 0) {
@@ -99,7 +99,12 @@ export class SingleProjectView extends Component {
 
             <div className='project_information mt-16 mb-16'>
               <h2 className='text-3xl'>{project.title}</h2>
+              <p className='location'>
+                <i className='fas fa-map-marker-alt'> </i>
+                {' ' + project.location}
+              </p>
               <p className='text-base'>{project.shortDescription}</p>
+
               {iscreator && (
                 <div className='text-center mb-10'>
                   <Link

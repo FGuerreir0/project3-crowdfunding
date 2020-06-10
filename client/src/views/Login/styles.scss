@@ -1,7 +1,6 @@
 .login-container {
   text-align: center;
   max-width: 50%;
-  height: 100%;
   margin: 0 auto;
 
   margin-top: 10%;
@@ -11,7 +10,7 @@
 }
 
 .input-container {
-  margin: 20px 0;
+  margin: 20px 10px;
   line-height: 200%;
 }
 
@@ -22,5 +21,13 @@
     font-weight: bold;
     color: blue;
     text-decoration: none;
+  }
+}
+@media (min-width: 1024px) {
+  .logoImageBodyLogin {
+    margin-left: -130px;
+    margin-right: 50px;
+    max-width: 450px;
+    max-height: 390px;
   }
 }

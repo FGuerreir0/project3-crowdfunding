@@ -20,8 +20,8 @@ class ProfileUserView extends Component {
     if (this.props.user) isOwner = this.props.match.params.id === this.props.user._id;
     getUserById(this.props.match.params.id)
       .then((result) => {
-        console.log('owner', isOwner);
-        console.log('result', result);
+        // console.log('owner', isOwner);
+        //console.log('result', result);
         this.setState({
           user: result.user,
           loaded: true,

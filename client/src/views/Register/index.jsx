@@ -37,10 +37,14 @@ class RegisterView extends Component {
 
   render() {
     return (
-      <div className='register-container'>
-        <img src='#' alt='Logo image' />
+      <div className='register-container  sm:text-center  lg:flex flex-row'>
+        <img
+          src={process.env.PUBLIC_URL + '/images/generalogo.png'}
+          alt='Logo'
+          className='logoImageBodyLogin'
+        />
 
-        <form onSubmit={this.handleFormSubmission}>
+        <form onSubmit={this.handleFormSubmission} className='border-2 '>
           <div className='input-container'>
             <label htmlFor='username'>Username</label>
             <br></br>
@@ -50,7 +54,7 @@ class RegisterView extends Component {
               id='username'
               name='username'
               type='text'
-              placeholder='Username'
+              placeholder='Insert username here'
               value={this.state.username}
               onChange={this.handleInputChange}
             />
@@ -64,7 +68,7 @@ class RegisterView extends Component {
               id='email'
               name='email'
               type='email'
-              placeholder='Email'
+              placeholder='Insert email here'
               value={this.state.email}
               onChange={this.handleInputChange}
             />
@@ -78,7 +82,7 @@ class RegisterView extends Component {
               id='password'
               name='password'
               type='password'
-              placeholder='Password'
+              placeholder='A strong password here'
               value={this.state.password}
               onChange={this.handleInputChange}
             />
@@ -88,7 +92,7 @@ class RegisterView extends Component {
               Register
             </button>
           </div>
-          <div>
+          <div className='mr-4 ml-4 mb-2'>
             <small className='smaller-container'>
               Did you know?<br></br>
               Food waste in Europe alone could feed 200 million hungry people

@@ -10,7 +10,7 @@ const router = new Router();
 router.post('/register', (req, res, next) => {
   const { username, email, password } = req.body;
 
-  console.log('Estou na route authentication');
+  //console.log('Estou na route authentication');
 
   bcryptjs
     .hash(password, 10)

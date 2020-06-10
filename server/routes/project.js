@@ -85,7 +85,7 @@ projectRouter.post('/:projectId/edit', uploader.single('coverPictureUrl'), (req,
 //CREATE PROJECT
 
 projectRouter.post('/create', uploader.single('coverPictureUrl'), (req, res, next) => {
-  console.log(req.user._id);
+  //console.log(req.user._id);
   const { title, description, category, location, money, resources, volunteer } = req.body;
 
   let coverPictureUrl;
@@ -107,7 +107,7 @@ projectRouter.post('/create', uploader.single('coverPictureUrl'), (req, res, nex
     coverPictureUrl
   })
     .then((result) => {
-      console.log('obj create: ', result);
+      //console.log('obj create: ', result);
       res.json({});
     })
     .catch((err) => {

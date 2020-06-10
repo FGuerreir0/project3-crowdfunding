@@ -9,11 +9,11 @@ class EditProjectView extends Component {
   }
 
   handleInputChange = ({ target: { name, value } }) => {
-    console.log(this.state.project);
+    // console.log(this.state.project);
     const newProject = { ...this.state.project };
     newProject[name] = value;
     this.setState({
-      project: newProject,
+      project: newProject
     });
   };
 
@@ -21,10 +21,10 @@ class EditProjectView extends Component {
     const id = this.props.match.params.project_id;
     getProjectById(id)
       .then((project) => {
-        console.log('project:', project);
+        // console.log('project:', project);
         this.setState({
           loaded: true,
-          project: { ...project },
+          project: { ...project }
         });
       })
       .catch((error) => {
@@ -42,23 +42,23 @@ class EditProjectView extends Component {
     const newProject = { ...this.state.project };
     newProject[name] = file;
     this.setState({
-      project: newProject,
+      project: newProject
     });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.project);
+    // console.log(this.state.project);
     const id = this.props.match.params.project_id;
     const { title, location, shortDescription, coverPictureUrl } = this.state.project;
 
-    console.log(title, location, shortDescription, coverPictureUrl);
+    // console.log(title, location, shortDescription, coverPictureUrl);
     updateProject({ id, title, location, shortDescription, coverPictureUrl })
       .then((project) => {
         this.props.history.push(`/project/${id}`);
       })
       .catch((error) => {
-        console.log('This is the error');
+        // console.log('This is the error');
         console.log(error);
       });
   };
@@ -102,7 +102,12 @@ class EditProjectView extends Component {
             />
 
             <label htmlFor='coverPictureUrl'>Cover Picture</label>
-            <input type='file' name='coverPictureUrl' id='coverPictureUrl' onChange={this.handleFileInputChange} />
+            <input
+              type='file'
+              name='coverPictureUrl'
+              id='coverPictureUrl'
+              onChange={this.handleFileInputChange}
+            />
 
             <button> Submit </button>
           </form>
