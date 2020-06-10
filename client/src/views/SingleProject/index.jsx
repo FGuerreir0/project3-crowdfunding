@@ -33,7 +33,7 @@ export class SingleProjectView extends Component {
   }
   render() {
     const project = this.state.project;
-    console.log(project);
+
     return (
       <div>
         {!this.state.loaded && (
