@@ -53,16 +53,16 @@ projectRouter.get('/:projectId', (req, res, next) => {
 
 projectRouter.post('/:projectId/edit', uploader.single('coverPictureUrl'), (req, res, next) => {
   const id = req.params.projectId;
-  const { title, location, description } = req.body;
+  const { title, location, shortDescription } = req.body;
   let coverPictureUrl;
   if (req.file) coverPictureUrl = req.file.path;
 
   if (coverPictureUrl) {
-    Project.findByIdAndUpdate({ _id: id }, { title, location, description, coverPictureUrl })
+    Project.findByIdAndUpdate({ _id: id }, { title, location, shortDescription, coverPictureUrl })
       .then((result) => {
         result.title = title;
         result.coverPictureUrl = coverPictureUrl;
-        result.description = description;
+        result.shortDescription = shortDescription;
         result.location = location;
         res.json({ project: result });
       })
@@ -70,10 +70,10 @@ projectRouter.post('/:projectId/edit', uploader.single('coverPictureUrl'), (req,
         next(error);
       });
   } else {
-    Project.findByIdAndUpdate({ _id: id }, { title, location, description })
+    Project.findByIdAndUpdate({ _id: id }, { title, location, shortDescription })
       .then((result) => {
         result.title = title;
-        result.description = description;
+        result.shortDescription = shortDescription;
         result.location = location;
         res.json({ project: result });
       })

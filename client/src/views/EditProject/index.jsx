@@ -46,10 +46,10 @@ class EditProjectView extends Component {
     event.preventDefault();
     console.log(this.state.project);
     const id = this.props.match.params.project_id;
-    const { title, location, description, coverPictureUrl } = this.state.project;
+    const { title, location, shortDescription, coverPictureUrl } = this.state.project;
 
     console.log(this.state);
-    updateProject({ id, title, location, description, coverPictureUrl })
+    updateProject({ id, title, location, shortDescription, coverPictureUrl })
       .then((project) => {
         this.props.history.push(`/project/${id}`);
       })
@@ -79,12 +79,12 @@ class EditProjectView extends Component {
               value={project.title}
               onChange={this.handleInputChange}
             />
-            <label htmlFor='description'>Description</label>
+            <label htmlFor='shortDescription'>Description</label>
             <input
               type='text'
-              className='update-description'
-              name='description'
-              value={project.description}
+              className='update-shortDescription'
+              name='shortDescription'
+              value={project.shortDescription}
               onChange={this.handleInputChange}
             />
 
