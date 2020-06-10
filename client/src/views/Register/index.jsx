@@ -45,6 +45,7 @@ class RegisterView extends Component {
             <label htmlFor='username'>Username</label>
             <br></br>
             <input
+              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name'
               required
               id='username'
               name='username'
@@ -58,6 +59,7 @@ class RegisterView extends Component {
             <label htmlFor='email-input'>Email</label>
             <br></br>
             <input
+              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name'
               required
               id='email'
               name='email'
@@ -71,6 +73,7 @@ class RegisterView extends Component {
             <label htmlFor='password-input'>Password</label>
             <br></br>
             <input
+              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name'
               required
               id='password'
               name='password'

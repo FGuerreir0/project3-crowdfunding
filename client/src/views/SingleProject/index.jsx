@@ -79,7 +79,7 @@ export class SingleProjectView extends Component {
           <div className='mr-16 ml-16 mt-20'>
             <div>
               <img
-                className='object-contain h-50 w-full'
+                className='object-contain imageSingleProject'
                 src={project.coverPictureUrl}
                 alt={project.title}
               />
