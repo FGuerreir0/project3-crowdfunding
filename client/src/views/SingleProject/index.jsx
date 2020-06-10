@@ -10,7 +10,9 @@ export class SingleProjectView extends Component {
     super(props);
     this.state = {
       project: null,
-      loaded: false
+      loaded: false,
+      resources: false,
+      volunteers: false
     };
   }
 
@@ -34,7 +36,18 @@ export class SingleProjectView extends Component {
   }
   render() {
     const project = this.state.project;
+    let haveResources = false;
+    let haveVolunteers = false;
     console.log(this.state.project);
+
+    if (project) {
+      if (project.needs.resources.length !== 0) {
+        haveResources = true;
+      }
+      if (project.needs.volunteer.length !== 0) {
+        haveVolunteers = true;
+      }
+    }
     return (
       <div>
         {!this.state.loaded && (
@@ -65,6 +78,20 @@ export class SingleProjectView extends Component {
             <div className='project_information mt-16 mb-16'>
               <h2 className='text-3xl'>{project.title}</h2>
               <p className='text-base'>{project.shortDescription}</p>
+              <div className='text-center mb-10'>
+                <Link
+                  className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mr-4'
+                  to={`/project/${project._id}/edit`}
+                >
+                  Edit
+                </Link>
+                <Link
+                  className='text-center bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 border border-red-900 rounded'
+                  to={`#`}
+                >
+                  Delete
+                </Link>
+              </div>
             </div>
 
             {project.needs.money.total && (
@@ -81,14 +108,36 @@ export class SingleProjectView extends Component {
                     Support this cause
                   </Link>
                 </div>
-                <div className='text-center mb-10'>
-                  <Link
-                    className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'
-                    to={`/project/${project._id}/edit`}
-                  >
-                    Edit
-                  </Link>
-                </div>
+              </div>
+            )}
+            {haveResources && (
+              /* Something will show */
+              <div>
+                <p>Resources needed:</p>
+                <table className='table-auto mt-10 mb-10'>
+                  <thead>
+                    <tr>
+                      <th className='px-4 py-2'>Resources</th>
+                      <th className='px-4 py-2'>Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* map */}
+                    {project.needs.resources.map((resource) => (
+                      <tr key={resource._id}>
+                        <td className='border-2 px-4 py-2 text-center'>{resource.name}</td>
+                        <td className='border-2 px-4 py-2 text-center'>{resource.quantity} und.</td>
+                      </tr>
+                    ))}
+                    {/* FIM DE MAP */}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            {haveVolunteers && (
+              /* Something will show */
+              <div>
+                <p>Voluntarios</p>
               </div>
             )}
           </div>
