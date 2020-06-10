@@ -28,13 +28,25 @@ const getProjectById = (id) => {
     });
 };
 
+const deleteProjectById = (id) => {
+  return baseProjectService
+    .get(`/${id}/delete`)
+    .then((result) => {
+      const project = result.data.project;
+      return Promise.resolve(project);
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
+};
+
 const updateProject = (body) => {
   const form = new FormData();
   form.append('title', body.title);
   form.append('description', body.description);
   form.append('location', body.location);
   if (body.coverPictureUrl !== null) form.append('coverPictureUrl', body.coverPictureUrl);
-  
+
   return baseProjectService
     .post(`/${body._id}/edit`, form)
     .then((result) => {
@@ -79,4 +91,11 @@ const createProject = (data) => {
     });
 };
 
-export { createProject, getAllprojects, getProjectByCategory, getProjectById, updateProject };
+export {
+  createProject,
+  getAllprojects,
+  getProjectByCategory,
+  getProjectById,
+  updateProject,
+  deleteProjectById
+};

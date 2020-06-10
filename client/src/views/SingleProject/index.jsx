@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles.scss';
 import ProgressBar from './../../components/ProgressBar';
-import { getProjectById } from './../../services/project';
+import { getProjectById, deleteProjectById } from './../../services/project';
 import formatDate from './../../helper/formatDate';
 import { Link } from 'react-router-dom';
 
@@ -34,6 +34,26 @@ export class SingleProjectView extends Component {
   componentDidMount() {
     this.loadSingleProject();
   }
+
+  handleDelete() {
+    this.deleteProject();
+  }
+
+  deleteProject() {
+    const id = this.props.match.params.project_id;
+    deleteProjectById(id)
+      .then((project) => {
+        console.log('project:', project);
+        this.setState({
+          loaded: true,
+          project: { ...project }
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   render() {
     const project = this.state.project;
     let haveResources = false;
@@ -80,17 +100,19 @@ export class SingleProjectView extends Component {
               <p className='text-base'>{project.shortDescription}</p>
               <div className='text-center mb-10'>
                 <Link
-                  className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mr-4'
+                  className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 border border-blue-700 rounded mr-4'
                   to={`/project/${project._id}/edit`}
                 >
                   Edit
                 </Link>
-                <Link
-                  className='text-center bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 border border-red-900 rounded'
-                  to={`#`}
+
+                <button
+                  onClick={this.handleDelete}
+                  className='text-center bg-red-800 hover:bg-red-900 text-white font-bold 
+                   px-2 border border-red-900 rounded'
                 >
                   Delete
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -110,36 +132,65 @@ export class SingleProjectView extends Component {
                 </div>
               </div>
             )}
-            {haveResources && (
-              /* Something will show */
-              <div>
-                <p>Resources needed:</p>
-                <table className='table-auto mt-10 mb-10'>
-                  <thead>
-                    <tr>
-                      <th className='px-4 py-2'>Resources</th>
-                      <th className='px-4 py-2'>Quantity</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* map */}
-                    {project.needs.resources.map((resource) => (
-                      <tr key={resource._id}>
-                        <td className='border-2 px-4 py-2 text-center'>{resource.name}</td>
-                        <td className='border-2 px-4 py-2 text-center'>{resource.quantity} und.</td>
+            <div className=' pt-6 pr-6 pl-6 mr-10 ml-10 flex flex-row justify-between'>
+              {haveResources && (
+                /* Something will show */
+                <div>
+                  <p>Resources needed:</p>
+                  <table className='table-auto mt-6 mb-10'>
+                    <thead>
+                      <tr>
+                        <th className='px-4 py-2'>Resource</th>
+                        <th className='px-4 py-2'>Quantity</th>
                       </tr>
-                    ))}
-                    {/* FIM DE MAP */}
-                  </tbody>
-                </table>
-              </div>
-            )}
-            {haveVolunteers && (
-              /* Something will show */
-              <div>
-                <p>Voluntarios</p>
-              </div>
-            )}
+                    </thead>
+                    <tbody>
+                      {/* map */}
+                      {project.needs.resources.map((resource) => (
+                        <tr key={resource._id}>
+                          <td className='border-2 px-4 py-2 text-center'>{resource.name}</td>
+                          <td className='border-2 px-4 py-2 text-center'>
+                            {resource.quantity} und.
+                          </td>
+                        </tr>
+                      ))}
+                      {/* FIM DE MAP */}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+              {haveVolunteers && (
+                <div>
+                  <p>Volunteers:</p>
+                  <table className='table-auto mt-6 mb-10'>
+                    <thead>
+                      <tr>
+                        <th className='px-4 py-2'>Type</th>
+                        <th className='px-4 py-2'>Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* map */}
+                      {project.needs.volunteer.map((volunteer) => (
+                        <tr key={volunteer._id}>
+                          <td className='border-2 px-4 py-2 text-center'>{volunteer.name}</td>
+                          <td className='border-2 px-4 py-2 text-center'>{volunteer.quantity}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+            <div className='mb-8'>
+              <p className='mb-4 mt-6'>If you want to contribute with any resources, needs: </p>
+              <Link
+                className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'
+                to={`/user/${project.creator._id}`}
+              >
+                Contact me
+              </Link>
+            </div>
           </div>
         )}
       </div>
