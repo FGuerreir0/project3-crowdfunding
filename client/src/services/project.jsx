@@ -33,7 +33,7 @@ const deleteProjectById = (id) => {
     .get(`/${id}/delete`)
     .then((result) => {
       const project = result.data.project;
-      return Promise.resolve(project);
+      return Promise.resolve('Cause was Deleted');
     })
     .catch((err) => {
       return Promise.reject(err);
