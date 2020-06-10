@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import { getUserById } from './../../services/user';
+import HorizontalCardList from './../../components/HorizontalCardList';
 
 class ProfileUserView extends Component {
   constructor(props) {
@@ -49,28 +50,31 @@ class ProfileUserView extends Component {
       <div>
         {!this.state.loaded && <span>Loading</span>}
         {this.state.user && (
-          <div>
-            <img src={user.pictureUrl} alt='Profile' className='profile_img' />
-            <br></br>
-            <h1>{user.username}</h1>
-            <br></br>
-            <h2>Email: {user.email}</h2>
-            <h2>Location: {user.location}</h2>
-            <br></br>
-            <h2>About me: {user.bio}</h2>
-            <br></br>
-            <p>My Projects</p>
+          <div className='main'>
+            <div className='profile'>
+              <img src={user.pictureUrl} alt='Profile' className='img' />
+              <p className='name'>{user.username}</p>
+              <p className='email'>{user.email}</p>
+              <p className='aboutme'>{user.bio}</p>
+              <p className='location'>
+                <i class='fas fa-map-marker-alt'> </i>
+                {' ' + user.location}
+              </p>
 
-            {
-              //só pra teste - no lugar do project.title vai um component com as informacoes do projeto
-              this.state.projects.map((project) => {
-                return <p>{project.title}</p>;
-              })
-            }
+              {this.state.isOwner && (
+                <Link to={`/user/${user._id}/edit`}>
+                  <p className='edit'>Edit</p>
+                </Link>
+              )}
+            </div>
+            <hr />
+            <div className='section'>
+              <p>Projects</p>
+              <HorizontalCardList projects={this.state.projects}></HorizontalCardList>
 
-            <br></br>
-            <p>Contributed Actions</p>
-            {this.state.isOwner && <Link to={`/user/${user._id}/edit`}>Edit</Link>}
+              <p className='actions'>Contributed Actions</p>
+              <HorizontalCardList projects={this.state.projects}></HorizontalCardList>
+            </div>
           </div>
         )}
       </div>
