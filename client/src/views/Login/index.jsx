@@ -37,21 +37,11 @@ export default class LoginView extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div className='login-container'>
-        <img src='#' alt='Logo' />
-        <form onSubmit={this.handleFormSubmission}>
-=======
       <div className='login-container sm:text-center lg:flex flex-row'>
         <div>
-          <img
-            src={process.env.PUBLIC_URL + '/images/generalogo.png'}
-            alt='Logo'
-            className='logoImageBodyLogin'
-          />
+          <img src={process.env.PUBLIC_URL + '/images/generalogo.png'} alt='Logo' className='logoImageBodyLogin' />
         </div>
         <form onSubmit={this.handleFormSubmission} className='border-2'>
->>>>>>> ca714dea5a3eaffb0e616d297a802f69ec984b3c
           <div className='input-container'>
             <label htmlFor='email-input'>Email: </label>
             <br></br>
