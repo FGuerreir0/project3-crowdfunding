@@ -6,13 +6,13 @@ const PaymentContribution = require('./../models/paymentContribution');
 
 // Stripe configuration
 
-const stripe = require('stripe')(process.env.STRIPE_API_SECRET_KEY);
+const stripe = require('stripe');
+const stripeInstance = stripe(process.env.STRIPE_API_SECRET_KEY);
 /*
 router.post('/', (req, res, next) => {
   const { userId, supporting, amount, creditCardToken } = req.body;
   console.log(req.body);
   let paymentIntent;
-
   stripeInstance.paymentIntents
     .create({
       amount: amount,
@@ -28,7 +28,6 @@ router.post('/', (req, res, next) => {
       });
     })
     
-
   stripeInstance.customers
     .create({
       customer: userId,
@@ -72,10 +71,6 @@ router.post('/', (req, res, next) => {
       console.log(error);
     });
 */
-
-//------------------------------------------------------------------------
-/*ANOTHER EXAMPLE
-
 router.post('/', (req, res, next) => {
   const { userId, supporting, amount, creditCardToken } = req.body;
   console.log(req.body);
@@ -87,7 +82,7 @@ router.post('/', (req, res, next) => {
       console.log(document);
       customer = document;
       return stripeInstance.paymentMethods.attach(creditCardToken, {
-        customer: customer.id,
+        customer: customer.id
       });
     })
     .then((method) => {
@@ -99,7 +94,7 @@ router.post('/', (req, res, next) => {
         currency: 'eur',
         error_on_requires_action: true,
         confirm: true,
-        save_payment_method: true,
+        save_payment_method: true
       });
     })
     .then((paymentProcess) => {
@@ -111,7 +106,7 @@ router.post('/', (req, res, next) => {
           contribution: amount,
           payment: paymentProcess.id,
           user: userId,
-          supporting,
+          supporting
         });
       }
     })
@@ -121,12 +116,6 @@ router.post('/', (req, res, next) => {
     .catch((error) => {
       console.log(error);
     });
-});*/
-
-router.post('/', (req, res, next) => {
-  const { userId, supporting, amount, creditCardToken } = req.body;
-  console.log(req.body);
-  console.log(userId);
 });
 
 module.exports = router;
