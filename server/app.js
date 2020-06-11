@@ -23,6 +23,9 @@ const app = express();
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
+
+app.use(express.static(join(__dirname, '../client/build')));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -33,8 +36,7 @@ app.use(
     cookie: {
       maxAge: 60 * 60 * 24 * 15 * 1000,
       sameSite: 'lax',
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production'
+      httpOnly: true
     },
     store: new (connectMongo(expressSession))({
       mongooseConnection: mongoose.connection,
@@ -57,6 +59,10 @@ app.use('/api/authentication', authenticationRouter);
 app.use('/api/contributionPayment', paymentContributionRouter);
 app.use('/api/project', projectRouter);
 app.use('/api/user', profileRouter);
+
+app.get('*', (req, res, next) => {
+  res.sendFile(join(__dirname, '../client/build/index.html'));
+});
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

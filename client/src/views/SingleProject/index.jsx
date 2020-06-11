@@ -190,7 +190,7 @@ export class SingleProjectView extends Component {
               )}
             </div>
             <div className='mb-8'>
-              <p className='mb-4 mt-6'>If you want to contribute with any resources, needs: </p>
+              <p className='mb-4 mt-6'>Do you wanna help with resources or volunteer work? </p>
               <Link
                 className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'
                 to={`/user/${project.creator._id}`}
