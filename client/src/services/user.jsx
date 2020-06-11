@@ -11,7 +11,8 @@ const getUserById = (id) => {
     .then((result) => {
       const user = result.data.user;
       const projects = result.data.projects;
-      const actions = result.data.actios;
+      const actions = result.data.actions;
+      console.log('actions', actions);
       return Promise.resolve({ user, projects, actions });
     })
     .catch((err) => {

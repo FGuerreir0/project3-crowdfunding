@@ -13,13 +13,13 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: 'project3'
-  }
+    folder: 'project3',
+  },
 });
 const uploader = multer({ storage });
 
@@ -37,9 +37,11 @@ profileRouter.get('/:id', (req, res, next) => {
     })
     .then((projects) => {
       _projects = projects;
+
       return Project.find({ 'backers.userId': req.params.id });
     })
     .then((_actions) => {
+      console.log('server', _actions);
       res.json({ user: _user, projects: _projects, actions: _actions });
     })
     .catch((error) => {
