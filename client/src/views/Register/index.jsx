@@ -37,17 +37,8 @@ class RegisterView extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div className='register-container'>
-        <img src='#' alt='Logo' />
-=======
       <div className='register-container  sm:text-center  lg:flex flex-row'>
-        <img
-          src={process.env.PUBLIC_URL + '/images/generalogo.png'}
-          alt='Logo'
-          className='logoImageBodyLogin'
-        />
->>>>>>> ca714dea5a3eaffb0e616d297a802f69ec984b3c
+        <img src={process.env.PUBLIC_URL + '/images/generalogo.png'} alt='Logo' className='logoImageBodyLogin' />
 
         <form onSubmit={this.handleFormSubmission} className='border-2 '>
           <div className='input-container'>
