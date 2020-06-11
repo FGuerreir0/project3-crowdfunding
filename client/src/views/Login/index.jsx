@@ -8,13 +8,13 @@ export default class LoginView extends Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
     };
   }
 
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -39,11 +39,7 @@ export default class LoginView extends Component {
     return (
       <div className='login-container sm:text-center lg:flex flex-row'>
         <div>
-          <img
-            src={process.env.PUBLIC_URL + '/images/generalogo.png'}
-            alt='Logo'
-            className='logoImageBodyLogin'
-          />
+          <img src={process.env.PUBLIC_URL + '/images/generalogo.png'} alt='Logo' className='logoImageBodyLogin' />
         </div>
         <form onSubmit={this.handleFormSubmission} className='border-2'>
           <div className='input-container'>

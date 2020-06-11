@@ -9,13 +9,13 @@ class RegisterView extends Component {
     this.state = {
       username: '',
       email: '',
-      password: ''
+      password: '',
     };
   }
 
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -38,11 +38,7 @@ class RegisterView extends Component {
   render() {
     return (
       <div className='register-container  sm:text-center  lg:flex flex-row'>
-        <img
-          src={process.env.PUBLIC_URL + '/images/generalogo.png'}
-          alt='Logo'
-          className='logoImageBodyLogin'
-        />
+        <img src={process.env.PUBLIC_URL + '/images/generalogo.png'} alt='Logo' className='logoImageBodyLogin' />
 
         <form onSubmit={this.handleFormSubmission} className='border-2 '>
           <div className='input-container'>

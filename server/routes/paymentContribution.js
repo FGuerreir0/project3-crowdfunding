@@ -80,25 +80,26 @@ router.post('/', (req, res, next) => {
   const { userId, supporting, amount, creditCardToken } = req.body;
   console.log(req.body);
   let customer;
-  return stripeInstance.customers
+
+  stripeInstance.customers
     .create()
     .then((document) => {
       console.log(document);
       customer = document;
       return stripeInstance.paymentMethods.attach(creditCardToken, {
-        customer: customer.id
+        customer: customer.id,
       });
     })
     .then((method) => {
-      console.log('estou aqui');
-      return stripeInstance.charges.create({
+      console.log('estou aqui', customer);
+      return stripeInstance.paymentIntents.create({
         customer: customer.id,
         payment_method: creditCardToken,
         amount: amount,
         currency: 'eur',
         error_on_requires_action: true,
         confirm: true,
-        save_payment_method: true
+        save_payment_method: true,
       });
     })
     .then((paymentProcess) => {
@@ -110,7 +111,7 @@ router.post('/', (req, res, next) => {
           contribution: amount,
           payment: paymentProcess.id,
           user: userId,
-          supporting
+          supporting,
         });
       }
     })
