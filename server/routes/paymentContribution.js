@@ -3,6 +3,7 @@
 const { Router } = require('express');
 const router = new Router();
 const PaymentContribution = require('./../models/paymentContribution');
+const Project = require('./../models/project');
 
 // Stripe configuration
 
@@ -105,7 +106,7 @@ router.post('/', (req, res, next) => {
       if (paymentProcess.status !== 'succeeded') {
         return Promise.reject(new Error('Charge could not be made.'));
       } else {
-        return PaymentContribution.create({
+        PaymentContribution.create({
           contribution: {
             amount: totalAmount,
           },
@@ -113,10 +114,21 @@ router.post('/', (req, res, next) => {
           user: userId,
           supporting,
         });
+
+        return Project.findById(supporting);
       }
     })
-    .then((contribution) => {
-      res.json({ contribution: contribution });
+    .then((project) => {
+      project.needs.money.backed += totalAmount;
+
+      if (!project.backers.some((user) => user.userId == userId)) {
+        project.backers.push({ userId });
+      }
+
+      return project.save();
+    })
+    .then(() => {
+      res.json({});
     })
     .catch((error) => {
       console.log(error);

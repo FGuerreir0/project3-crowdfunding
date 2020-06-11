@@ -11,7 +11,7 @@ class ProfileUserView extends Component {
       user: null,
       loaded: false,
       isOwner: false,
-      projects: []
+      projects: [],
     };
   }
 
@@ -26,7 +26,8 @@ class ProfileUserView extends Component {
           user: result.user,
           loaded: true,
           isOwner,
-          projects: [...result.projects]
+          projects: [...result.projects],
+          actions: [...result.actions],
         });
       })
       .catch((error) => {
@@ -73,7 +74,7 @@ class ProfileUserView extends Component {
               <HorizontalCardList projects={this.state.projects}></HorizontalCardList>
 
               <p className='actions'>Contributed Actions</p>
-              <HorizontalCardList projects={this.state.projects}></HorizontalCardList>
+              <HorizontalCardList projects={this.state.actions}></HorizontalCardList>
             </div>
           </div>
         )}
