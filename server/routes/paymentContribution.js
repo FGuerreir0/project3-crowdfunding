@@ -6,8 +6,7 @@ const PaymentContribution = require('./../models/paymentContribution');
 
 // Stripe configuration
 
-const stripe = require('stripe');
-const stripeInstance = stripe(process.env.STRIPE_API_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_API_SECRET_KEY);
 /*
 router.post('/', (req, res, next) => {
   const { userId, supporting, amount, creditCardToken } = req.body;
@@ -73,6 +72,10 @@ router.post('/', (req, res, next) => {
       console.log(error);
     });
 */
+
+//------------------------------------------------------------------------
+/*ANOTHER EXAMPLE
+
 router.post('/', (req, res, next) => {
   const { userId, supporting, amount, creditCardToken } = req.body;
   console.log(req.body);
@@ -117,6 +120,12 @@ router.post('/', (req, res, next) => {
     .catch((error) => {
       console.log(error);
     });
+});*/
+
+router.post('/', (req, res, next) => {
+  const { userId, supporting, amount, creditCardToken } = req.body;
+  console.log(req.body);
+  console.log(userId);
 });
 
 module.exports = router;
