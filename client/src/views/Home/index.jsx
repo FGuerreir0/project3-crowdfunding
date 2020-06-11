@@ -3,6 +3,7 @@ import './styles.scss';
 import { getAllprojects } from './../../services/project';
 import { Link } from 'react-router-dom';
 import ProjectsList from './../../components/ProjectList';
+import Fact from './../../components/Fact';
 
 class HomeView extends Component {
   constructor(props) {
@@ -31,13 +32,18 @@ class HomeView extends Component {
   render(props) {
     return (
       <div>
-        <div className='mt-16 mb-16 text-center'>
-          <Link
-            className=' text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded '
-            to='/create'
-          >
-            Create a Cause
-          </Link>
+        <div className='mt-12 mb-6 text-center'>
+          {this.props.user && (
+            <Link
+              className=' text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded '
+              to='/create'
+            >
+              Create a Cause
+            </Link>
+          )}
+        </div>
+        <div className='mt-6 mb-6 text-center'>
+          <Fact />
         </div>
         <ProjectsList projects={this.state.projects} user={this.props.user} />
       </div>
