@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseProjectService = axios.create({
-  baseURL: '/api/project',
+  baseURL: '/api/project'
 });
 
 const getAllprojects = () => {
@@ -92,4 +92,11 @@ const createProject = (data) => {
     });
 };
 
-export { createProject, getAllprojects, getProjectByCategory, getProjectById, updateProject, deleteProjectById };
+export {
+  createProject,
+  getAllprojects,
+  getProjectByCategory,
+  getProjectById,
+  updateProject,
+  deleteProjectById
+};

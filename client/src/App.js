@@ -3,7 +3,8 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 
 //IMPORT COMPONENTS HERE
-import NavBar from './components/Navbar';
+//import NavBar from './components/Navbar';
+import FutureNavBar from './components/FutureNavBar';
 
 //IMPORT ROUTES HERE
 import HomeView from './views/Home';
@@ -53,14 +54,16 @@ class App extends Component {
       <div className='App'>
         {this.state.loaded && (
           <BrowserRouter>
-            <NavBar user={this.state.user} updateUser={this.updateUser} />
+            <FutureNavBar user={this.state.user} updateUser={this.updateUser} />
 
             <Switch>
               {/* Home Route  */}
               <Route
                 exact
                 path='/'
-                render={(props) => <HomeView {...props} updateUser={this.updateUser} />}
+                render={(props) => (
+                  <HomeView {...props} user={this.state.user} updateUser={this.updateUser} />
+                )}
               />
               {/* AUTHENTICATION ROUTES*/}
               <Route

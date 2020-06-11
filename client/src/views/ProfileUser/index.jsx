@@ -11,7 +11,7 @@ class ProfileUserView extends Component {
       user: null,
       loaded: false,
       isOwner: false,
-      projects: [],
+      projects: []
     };
   }
 
@@ -20,13 +20,13 @@ class ProfileUserView extends Component {
     if (this.props.user) isOwner = this.props.match.params.id === this.props.user._id;
     getUserById(this.props.match.params.id)
       .then((result) => {
-        console.log('owner', isOwner);
-        console.log('result', result);
+        // console.log('owner', isOwner);
+        //console.log('result', result);
         this.setState({
           user: result.user,
           loaded: true,
           isOwner,
-          projects: [...result.projects],
+          projects: [...result.projects]
         });
       })
       .catch((error) => {

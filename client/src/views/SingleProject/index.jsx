@@ -20,7 +20,7 @@ export class SingleProjectView extends Component {
     const id = this.props.match.params.project_id;
     getProjectById(id)
       .then((project) => {
-        console.log('project:', project);
+        //  console.log('project:', project);
         this.setState({
           loaded: true,
           project: { ...project }
@@ -41,13 +41,13 @@ export class SingleProjectView extends Component {
 
   deleteProject() {
     const id = this.props.match.params.project_id;
-    console.log('vamos eliminar', id);
+    // console.log('vamos eliminar', id);
     deleteProjectById(id)
       .then((project) => {
         this.props.history.push(`/`);
       })
       .catch((error) => {
-        console.log('This is the error');
+        // console.log('This is the error');
         console.log(error);
       });
   }
@@ -57,7 +57,7 @@ export class SingleProjectView extends Component {
     let haveResources = false;
     let haveVolunteers = false;
     let iscreator = false;
-    console.log(this.props);
+    // console.log(this.props.user);
 
     if (project) {
       if (project.needs.resources.length !== 0) {
@@ -65,6 +65,9 @@ export class SingleProjectView extends Component {
       }
       if (project.needs.volunteer.length !== 0) {
         haveVolunteers = true;
+      }
+      if (this.props.user._id === project.creator._id) {
+        iscreator = true;
       }
     }
     return (
@@ -96,23 +99,30 @@ export class SingleProjectView extends Component {
 
             <div className='project_information mt-16 mb-16'>
               <h2 className='text-3xl'>{project.title}</h2>
+              <p className='location'>
+                <i className='fas fa-map-marker-alt'> </i>
+                {' ' + project.location}
+              </p>
               <p className='text-base'>{project.shortDescription}</p>
-              <div className='text-center mb-10'>
-                <Link
-                  className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 border border-blue-700 rounded mr-4'
-                  to={`/project/${project._id}/edit`}
-                >
-                  Edit
-                </Link>
 
-                <button
-                  onClick={this.handleDelete}
-                  className='text-center bg-red-800 hover:bg-red-900 text-white font-bold 
+              {iscreator && (
+                <div className='text-center mb-10'>
+                  <Link
+                    className='text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 border border-blue-700 rounded mr-4'
+                    to={`/project/${project._id}/edit`}
+                  >
+                    Edit
+                  </Link>
+
+                  <button
+                    onClick={this.handleDelete}
+                    className='text-center bg-red-800 hover:bg-red-900 text-white font-bold 
                    px-2 border border-red-900 rounded'
-                >
-                  Delete
-                </button>
-              </div>
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
             </div>
 
             {project.needs.money.total && (

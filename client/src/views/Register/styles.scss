@@ -13,7 +13,7 @@
 .input-container {
   font-size: 17px;
 
-  margin: 15px 0;
+  margin: 15px 10px;
   line-height: 100%;
   input {
     font-size: 17px;
@@ -29,4 +29,13 @@
 .smaller-container {
   margin: 40px 0;
   line-height: 100%;
+}
+
+@media (min-width: 1024px) {
+  .logoImageBodyRegister {
+    margin-left: -130px;
+    margin-right: 50px;
+    max-width: 450px;
+    max-height: 390px;
+  }
 }

@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import ProjectsList from './../../components/ProjectList';
 
 class HomeView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       projects: []
     };
@@ -28,7 +28,7 @@ class HomeView extends Component {
       });
   }
 
-  render() {
+  render(props) {
     return (
       <div>
         <div className='mt-16 mb-16 text-center'>
@@ -39,7 +39,7 @@ class HomeView extends Component {
             Create a Cause
           </Link>
         </div>
-        <ProjectsList projects={this.state.projects} />
+        <ProjectsList projects={this.state.projects} user={this.props.user} />
       </div>
     );
   }

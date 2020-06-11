@@ -33,7 +33,7 @@ class EditAccountView extends Component {
         this.props.history.push({ pathname: `/user/${user._id}`, user });
       })
       .catch((error) => {
-        console.log('This is the error');
+        // console.log('This is the error');
         console.log(error);
       });
   };
