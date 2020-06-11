@@ -42,11 +42,7 @@ const NavBar = (props) => {
             <li className='md:ml-2'>
               <div className='flex flex-row'>
                 <Link to={`/user/${props.user._id}`}>
-                  <img
-                    className='profileImage'
-                    src={props.user.pictureUrl}
-                    alt={props.user.username}
-                  />
+                  <img className='profileImage' src={props.user.pictureUrl} alt={props.user.username} />
                 </Link>
                 <div className='md:mt-1 md:ml-2'>
                   <Link to={`/user/${props.user._id}`}>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseProjectService = axios.create({
-  baseURL: '/api/project'
+  baseURL: '/api/project',
 });
 
 const getAllprojects = () => {
@@ -47,6 +47,9 @@ const updateProject = (body) => {
   form.append('shortDescription', body.shortDescription);
   form.append('location', body.location);
   form.append('category', body.category);
+  form.append('money', body.money);
+  form.append('resources', JSON.stringify(body.resources));
+  form.append('volunteer', JSON.stringify(body.volunteer));
   if (body.coverPictureUrl !== null) form.append('coverPictureUrl', body.coverPictureUrl);
 
   return baseProjectService
@@ -93,11 +96,4 @@ const createProject = (data) => {
     });
 };
 
-export {
-  createProject,
-  getAllprojects,
-  getProjectByCategory,
-  getProjectById,
-  updateProject,
-  deleteProjectById
-};
+export { createProject, getAllprojects, getProjectByCategory, getProjectById, updateProject, deleteProjectById };

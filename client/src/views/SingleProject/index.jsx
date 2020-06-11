@@ -13,7 +13,7 @@ export class SingleProjectView extends Component {
       project: null,
       loaded: false,
       resources: false,
-      volunteers: false
+      volunteers: false,
     };
   }
 
@@ -24,7 +24,7 @@ export class SingleProjectView extends Component {
         //  console.log('project:', project);
         this.setState({
           loaded: true,
-          project: { ...project }
+          project: { ...project },
         });
       })
       .catch((error) => {
@@ -81,11 +81,7 @@ export class SingleProjectView extends Component {
         {project && (
           <div className='mr-16 ml-16 mt-20'>
             <div>
-              <img
-                className='object-contain imageSingleProject'
-                src={project.coverPictureUrl}
-                alt={project.title}
-              />
+              <img className='object-contain imageSingleProject' src={project.coverPictureUrl} alt={project.title} />
               <div className='project_dateCreator'>
                 <small>
                   <strong>Created by: </strong>
@@ -145,7 +141,7 @@ export class SingleProjectView extends Component {
                 </div>
               </div>
             )}
-            <div className=' pt-6 pr-6 pl-6 mr-10 ml-10 flex flex-row justify-between'>
+            <div className=' flex-wrap pt-6 pr-6 pl-6  flex flex-row justify-between'>
               {haveResources && (
                 /* Something will show */
                 <div>
@@ -162,9 +158,7 @@ export class SingleProjectView extends Component {
                       {project.needs.resources.map((resource) => (
                         <tr key={resource._id}>
                           <td className='border-2 px-4 py-2 text-center'>{resource.name}</td>
-                          <td className='border-2 px-4 py-2 text-center'>
-                            {resource.quantity} und.
-                          </td>
+                          <td className='border-2 px-4 py-2 text-center'>{resource.quantity} und.</td>
                         </tr>
                       ))}
                       {/* FIM DE MAP */}
