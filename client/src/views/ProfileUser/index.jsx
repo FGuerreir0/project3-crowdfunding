@@ -57,7 +57,7 @@ class ProfileUserView extends Component {
               <p className='email'>{user.email}</p>
               <p className='aboutme'>{user.bio}</p>
               <p className='location'>
-                <i class='fas fa-map-marker-alt'> </i>
+                <i className='fas fa-map-marker-alt'> </i>
                 {' ' + user.location}
               </p>
 

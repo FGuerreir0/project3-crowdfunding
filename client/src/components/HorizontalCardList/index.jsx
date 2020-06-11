@@ -6,7 +6,7 @@ const horizontalCardList = (props) => {
   return (
     <div className='row'>
       {props.projects.map((project) => {
-        return <ProjectCard {...project}></ProjectCard>;
+        return <ProjectCard key={project._id} {...project}></ProjectCard>;
       })}
     </div>
   );

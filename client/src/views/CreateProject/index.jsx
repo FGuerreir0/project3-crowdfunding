@@ -96,7 +96,7 @@ export default class CreateProjectView extends Component {
                 Title
               </label>
             </div>
-            <div class='md:w-2/3'>
+            <div className='md:w-2/3'>
               <input
                 className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name'
                 id='title'
@@ -113,7 +113,7 @@ export default class CreateProjectView extends Component {
                 Picture{' '}
               </label>
             </div>
-            <div class='md:w-2/3'>
+            <div className='md:w-2/3'>
               <input type='file' name='coverPictureUrl' id='picture' onChange={this.handleFileInputChange} />
             </div>
           </div>
@@ -124,7 +124,7 @@ export default class CreateProjectView extends Component {
                 Description
               </label>
             </div>
-            <div class='md:w-2/3'>
+            <div className='md:w-2/3'>
               <input
                 className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name'
                 id='description'
@@ -142,7 +142,7 @@ export default class CreateProjectView extends Component {
                 Location
               </label>
             </div>
-            <div class='md:w-2/3'>
+            <div className='md:w-2/3'>
               <input
                 className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name'
                 id='location'
@@ -160,13 +160,13 @@ export default class CreateProjectView extends Component {
                 Category:
               </label>
             </div>
-            <div class='md:w-2/3'>
-              <div class='inline-block relative w-64'>
+            <div className='md:w-2/3'>
+              <div className='inline-block relative w-64'>
                 <select
                   id='category'
                   name='category'
                   onChange={this.handleInputChange}
-                  class='block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
+                  className='block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
                 >
                   <option value='Food'>Food</option>
                   <option value='Education'>Education</option>
@@ -176,8 +176,8 @@ export default class CreateProjectView extends Component {
                   <option value='Donation'>Donation</option>
                   <option value='Other'>Other</option>
                 </select>
-                <div class='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
-                  <svg class='fill-current h-4 w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
+                <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
+                  <svg className='fill-current h-4 w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
                     <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
                   </svg>
                 </div>
@@ -193,7 +193,7 @@ export default class CreateProjectView extends Component {
                 Money
               </label>
             </div>
-            <div class='md:w-2/3'>
+            <div className='md:w-2/3'>
               <input
                 className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name'
                 id='money'

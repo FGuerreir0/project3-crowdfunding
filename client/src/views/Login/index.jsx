@@ -8,13 +8,13 @@ export default class LoginView extends Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
     };
   }
 
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -38,7 +38,7 @@ export default class LoginView extends Component {
   render() {
     return (
       <div className='login-container'>
-        <img src='#' alt='Logo image' />
+        <img src='#' alt='Logo' />
         <form onSubmit={this.handleFormSubmission}>
           <div className='input-container'>
             <label htmlFor='email-input'>Email: </label>

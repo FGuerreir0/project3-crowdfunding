@@ -32,7 +32,7 @@ const deleteProjectById = (id) => {
   return baseProjectService
     .get(`/${id}/delete`)
     .then((result) => {
-      const project = result.data.project;
+      //const project = result.data.project;
       return Promise.resolve('Cause was Deleted');
     })
     .catch((err) => {

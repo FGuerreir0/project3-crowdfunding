@@ -9,13 +9,13 @@ class RegisterView extends Component {
     this.state = {
       username: '',
       email: '',
-      password: ''
+      password: '',
     };
   }
 
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -38,7 +38,7 @@ class RegisterView extends Component {
   render() {
     return (
       <div className='register-container'>
-        <img src='#' alt='Logo image' />
+        <img src='#' alt='Logo' />
 
         <form onSubmit={this.handleFormSubmission}>
           <div className='input-container'>
