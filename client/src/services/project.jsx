@@ -47,7 +47,6 @@ const updateProject = (body) => {
   form.append('shortDescription', body.shortDescription);
   form.append('location', body.location);
   form.append('category', body.category);
-  form.append('money', body.money);
   if (body.coverPictureUrl !== null) form.append('coverPictureUrl', body.coverPictureUrl);
 
   return baseProjectService
@@ -79,7 +78,7 @@ const createProject = (data) => {
   form.append('title', data.title);
   form.append('description', data.description);
   form.append('category', data.category);
-  //form.append('money', data.money);
+  form.append('money', data.money);
   form.append('resources', JSON.stringify(data.resources));
   form.append('volunteer', JSON.stringify(data.volunteer));
   form.append('location', data.location);
