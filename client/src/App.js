@@ -6,7 +6,7 @@ import './App.css';
 //import NavBar from './components/Navbar';
 import FutureNavBar from './components/FutureNavBar';
 
-//IMPORT ROUTES HERE
+//IMPORT ROUTESgit s
 import HomeView from './views/Home';
 import RegisterView from './views/Register';
 import LoginView from './views/Login';
