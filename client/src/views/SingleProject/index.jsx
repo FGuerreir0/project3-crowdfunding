@@ -4,6 +4,7 @@ import ProgressBar from './../../components/ProgressBar';
 import { getProjectById, deleteProjectById } from './../../services/project';
 import formatDate from './../../helper/formatDate';
 import { Link } from 'react-router-dom';
+import ReactPlayer from './../../components/ReactPlayer';
 
 export class SingleProjectView extends Component {
   constructor(props) {
@@ -104,6 +105,10 @@ export class SingleProjectView extends Component {
                 {' ' + project.location}
               </p>
               <p className='text-base'>{project.shortDescription}</p>
+
+              <div style={{ maxWidth: '80%' }}>
+                <ReactPlayer id='0XTBYMfZyrM' />
+              </div>
 
               {iscreator && (
                 <div className='text-center mb-10'>
