@@ -2,6 +2,6 @@
   "name": "project3-crowdfunding",
   "scripts": {
     "start": "node ./server/server.js",
-    "postinstall": "cd client && npm i && npm run build && cd ../server && npm i && cd .."
+    "postinstall": "npm i && cd client && npm i && npm run build && cd ../server && npm i && cd .."
   }
 }
