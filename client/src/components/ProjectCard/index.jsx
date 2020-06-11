@@ -8,14 +8,12 @@ const projectCard = (props) => {
       <div className='card'>
         <div className='info'>
           <div className='title'>
-            <p>{props.title}</p>
+            <p className='limit1'>{props.title}</p>
           </div>
           <hr />
-          <div className='description'>
+          <div className='card-description'>
             <p className='limit'>{props.shortDescription}</p>
           </div>
-          <hr />
-          <div className='footer'>footer</div>
         </div>
       </div>
     </Link>

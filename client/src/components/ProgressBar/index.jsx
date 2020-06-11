@@ -12,23 +12,17 @@ export class ProgressBar extends Component {
                 width: `${percentageCalc(
                   this.props.project.needs.money.backed,
                   this.props.project.needs.money.total
-                )}%`
+                )}%`,
               }}
               className='shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500'
             >
               <div className='flex mb-3 items-center justify-between align-center'>
                 <div>
-                  <span className='text-small font-semibold inline-block text-white-600 mt-3 ml-3'>
-                    0%
-                  </span>
+                  <span className='text-small font-semibold inline-block text-white-600 mt-3 ml-3'></span>
                 </div>
                 <div className='text-right'>
                   <span className='text-small font-semibold inline-block text-white-600 mt-3 mr-3'>
-                    {percentageCalc(
-                      this.props.project.needs.money.backed,
-                      this.props.project.needs.money.total
-                    )}
-                    %
+                    {percentageCalc(this.props.project.needs.money.backed, this.props.project.needs.money.total)}%
                   </span>
                 </div>
               </div>

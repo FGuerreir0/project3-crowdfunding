@@ -21,10 +21,10 @@
   font-weight: bold;
 }
 
-.description {
+.card-description {
   padding: 10px 15px 0;
   background-color: white;
-  height: 60%;
+  height: 70%;
 }
 
 .footer {
@@ -36,5 +36,13 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 4; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.limit1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
 }

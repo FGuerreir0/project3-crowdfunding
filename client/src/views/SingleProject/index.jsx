@@ -4,7 +4,11 @@ import ProgressBar from './../../components/ProgressBar';
 import { getProjectById, deleteProjectById } from './../../services/project';
 import formatDate from './../../helper/formatDate';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 import ReactPlayer from './../../components/ReactPlayer';
+=======
+import formatMoney from './../../helper/formatMoney';
+>>>>>>> d838c313354af99d7543b25aa7263bb8fdac70b4
 
 export class SingleProjectView extends Component {
   constructor(props) {
@@ -13,7 +17,7 @@ export class SingleProjectView extends Component {
       project: null,
       loaded: false,
       resources: false,
-      volunteers: false
+      volunteers: false,
     };
   }
 
@@ -24,7 +28,7 @@ export class SingleProjectView extends Component {
         //  console.log('project:', project);
         this.setState({
           loaded: true,
-          project: { ...project }
+          project: { ...project },
         });
       })
       .catch((error) => {
@@ -81,11 +85,7 @@ export class SingleProjectView extends Component {
         {project && (
           <div className='mr-16 ml-16 mt-20'>
             <div>
-              <img
-                className='object-contain imageSingleProject'
-                src={project.coverPictureUrl}
-                alt={project.title}
-              />
+              <img className='object-contain imageSingleProject' src={project.coverPictureUrl} alt={project.title} />
               <div className='project_dateCreator'>
                 <small>
                   <strong>Created by: </strong>
@@ -104,7 +104,9 @@ export class SingleProjectView extends Component {
                 <i className='fas fa-map-marker-alt'> </i>
                 {' ' + project.location}
               </p>
-              <p className='text-base'>{project.shortDescription}</p>
+              <div className='description'>
+                <p className='text-base lineH mb-5'>{project.shortDescription}</p>
+              </div>
 
               <div style={{ maxWidth: '80%' }}>
                 <ReactPlayer id='0XTBYMfZyrM' />
@@ -134,7 +136,8 @@ export class SingleProjectView extends Component {
               <div className='border-2 mb-6'>
                 <div className='text-center mt-10 mb-10'>
                   <small>
-                    Goal: {project.needs.money.total}€ || Achieved: {project.needs.money.backed}€
+                    Goal: {formatMoney(project.needs.money.total)}€ || Achieved:{' '}
+                    {formatMoney(project.needs.money.backed)}€
                   </small>
                   <ProgressBar project={project} />
                   <Link
@@ -163,9 +166,7 @@ export class SingleProjectView extends Component {
                       {project.needs.resources.map((resource) => (
                         <tr key={resource._id}>
                           <td className='border-2 px-4 py-2 text-center'>{resource.name}</td>
-                          <td className='border-2 px-4 py-2 text-center'>
-                            {resource.quantity} und.
-                          </td>
+                          <td className='border-2 px-4 py-2 text-center'>{resource.quantity} und.</td>
                         </tr>
                       ))}
                       {/* FIM DE MAP */}
