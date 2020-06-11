@@ -42,7 +42,7 @@ class HomeView extends Component {
             </Link>
           )}
         </div>
-        <div className='mt-6 mb-6 text-center'>
+        <div className='mt-2 mb-6 text-center'>
           <Fact />
         </div>
         <ProjectsList projects={this.state.projects} user={this.props.user} />
