@@ -13,13 +13,13 @@ class EditProjectView extends Component {
     const newProject = { ...this.state.project };
     newProject[name] = value;
     this.setState({
-      project: newProject
+      project: newProject,
     });
   };
 
   handleMoneyInputChange = ({ target: { value } }) => {
     this.setState({
-      money: value
+      money: value,
     });
   };
 
@@ -30,7 +30,7 @@ class EditProjectView extends Component {
         // console.log('project:', project);
         this.setState({
           loaded: true,
-          project: { ...project }
+          project: { ...project },
         });
       })
       .catch((error) => {
@@ -48,7 +48,7 @@ class EditProjectView extends Component {
     const newProject = { ...this.state.project };
     newProject[name] = file;
     this.setState({
-      project: newProject
+      project: newProject,
     });
   };
 
@@ -91,10 +91,7 @@ class EditProjectView extends Component {
             <form onSubmit={this.handleSubmit} className='w-full max-w-sm'>
               <div className='md:flex md:items-center mb-6'>
                 <div className='md:w-1/3'>
-                  <label
-                    htmlFor='title'
-                    className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'
-                  >
+                  <label htmlFor='title' className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>
                     Title
                   </label>
                 </div>
@@ -103,7 +100,7 @@ class EditProjectView extends Component {
                     required
                     className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name'
                     type='text'
-                    className='update-title'
+                    //className='update-title'
                     name='title'
                     value={project.title}
                     onChange={this.handleInputChange}
@@ -112,10 +109,7 @@ class EditProjectView extends Component {
               </div>
               <div className='md:flex md:items-center mb-6'>
                 <div className='md:w-1/3'>
-                  <label
-                    className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'
-                    htmlFor='picture'
-                  >
+                  <label className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4' htmlFor='picture'>
                     Picture{' '}
                   </label>
                 </div>
@@ -143,7 +137,7 @@ class EditProjectView extends Component {
                     required
                     className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name'
                     type='text'
-                    className='update-shortDescription'
+                    //className='update-shortDescription'
                     name='shortDescription'
                     value={project.shortDescription}
                     onChange={this.handleInputChange}
@@ -152,10 +146,7 @@ class EditProjectView extends Component {
               </div>
               <div className='md:flex md:items-center mb-6'>
                 <div className='md:w-1/3'>
-                  <label
-                    htmlFor='location'
-                    className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'
-                  >
+                  <label htmlFor='location' className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>
                     Location
                   </label>
                 </div>
@@ -164,7 +155,7 @@ class EditProjectView extends Component {
                     required
                     className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name'
                     type='text'
-                    className='update-location'
+                    // className='update-location'
                     name='location'
                     value={project.location}
                     onChange={this.handleInputChange}
@@ -173,10 +164,7 @@ class EditProjectView extends Component {
               </div>
               <div className='md:flex md:items-center mb-6'>
                 <div className='md:w-1/3'>
-                  <label
-                    htmlFor='category'
-                    className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'
-                  >
+                  <label htmlFor='category' className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>
                     Category:
                   </label>
                 </div>
@@ -197,11 +185,7 @@ class EditProjectView extends Component {
                       <option value='Other'>Other</option>
                     </select>
                     <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
-                      <svg
-                        className='fill-current h-4 w-4'
-                        xmlns='http://www.w3.org/2000/svg'
-                        viewBox='0 0 20 20'
-                      >
+                      <svg className='fill-current h-4 w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
                         <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
                       </svg>
                     </div>
