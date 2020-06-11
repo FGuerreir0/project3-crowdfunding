@@ -30,7 +30,7 @@ export default class WelcomeView extends Component {
               <br></br>
             </div>
             <p className='text-xl mr-16 ml-16'>
-              By registering you just became part of the flow of people help or getting help with
+              By registering you just became part of the flow of people helping with or getting help from
               various humanitarian causes.
             </p>
             <div style={{ margin: '0 auto' }}>
