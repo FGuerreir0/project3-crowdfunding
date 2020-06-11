@@ -77,6 +77,7 @@ router.post('/', (req, res, next) => {
   const { userId, supporting, amount, creditCardToken } = req.body;
   console.log(req.body);
   let customer;
+  const totalAmount = amount * 100;
 
   stripeInstance.customers
     .create()
@@ -92,7 +93,7 @@ router.post('/', (req, res, next) => {
       return stripeInstance.paymentIntents.create({
         customer: customer.id,
         payment_method: creditCardToken,
-        amount: amount,
+        amount: totalAmount,
         currency: 'eur',
         error_on_requires_action: true,
         confirm: true,
@@ -105,7 +106,9 @@ router.post('/', (req, res, next) => {
         return Promise.reject(new Error('Charge could not be made.'));
       } else {
         return PaymentContribution.create({
-          contribution: amount,
+          contribution: {
+            amount: totalAmount,
+          },
           payment: paymentProcess.id,
           user: userId,
           supporting,
