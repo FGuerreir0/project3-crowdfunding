@@ -87,4 +87,6 @@ const schema = new mongoose.Schema(
   }
 );
 
+schema.index({ name: 'text' });
+
 module.exports = mongoose.model('Project', schema);

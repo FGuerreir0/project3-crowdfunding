@@ -93,11 +93,26 @@ const createProject = (data) => {
     });
 };
 
+const searchForProject = (term) => {
+  return baseProjectService
+    .get(`/search?term=${term}`)
+    .then((response) => {
+      const data = response.data;
+      console.log(data.projects);
+      const projects = data.projects;
+      return Promise.resolve(projects);
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+};
+
 export {
   createProject,
   getAllprojects,
   getProjectByCategory,
   getProjectById,
   updateProject,
-  deleteProjectById
+  deleteProjectById,
+  searchForProject
 };

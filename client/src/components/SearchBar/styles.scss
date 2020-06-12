@@ -1,0 +1,16 @@
+.search-bar {
+  flex-direction: row;
+  flex: 1;
+  input,
+  button {
+    border: 0;
+    padding: 2px;
+    padding-right: 3px;
+    margin: 0;
+    background-color: white;
+  }
+  input {
+    flex: 1;
+    // min-width: ;
+  }
+}

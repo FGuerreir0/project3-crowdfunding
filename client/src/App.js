@@ -3,11 +3,12 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 
 //IMPORT COMPONENTS HERE
-//import NavBar from './components/Navbar';
-import FutureNavBar from './components/FutureNavBar';
+import NavBar from './components/Navbar';
+//import FutureNavBar from './components/FutureNavBar';
 
 //IMPORT ROUTESgit s
 import HomeView from './views/Home';
+import SearchView from './views/Search';
 import RegisterView from './views/Register';
 import LoginView from './views/Login';
 import WelcomeView from './views/Welcome';
@@ -54,7 +55,7 @@ class App extends Component {
       <div className='App'>
         {this.state.loaded && (
           <BrowserRouter>
-            <FutureNavBar user={this.state.user} updateUser={this.updateUser} />
+            <NavBar user={this.state.user} updateUser={this.updateUser} />
 
             <Switch>
               {/* Home Route  */}
@@ -100,6 +101,13 @@ class App extends Component {
                 path='/user/:user_id/projects'
                 render={(props) => <EditProfileView {...props} />}
               />
+
+              {
+                // SEARCH FOR A PROJECT
+              }
+
+              <Route path='/search' component={SearchView} />
+
               <Route
                 exact
                 path='/project/:project_id'
