@@ -9,9 +9,10 @@
   text-align: center;
   margin-bottom: 20px;
   .img {
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
+    border: 0.5px solid dimgrey;
     margin: 30px auto 5px;
   }
   .name {
@@ -21,6 +22,7 @@
   }
 
   .email {
+    margin-top: 10px;
     margin-bottom: 10px;
     color: dimgrey;
     line-height: 0.5em;
