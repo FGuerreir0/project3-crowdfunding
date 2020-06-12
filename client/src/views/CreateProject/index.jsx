@@ -188,7 +188,7 @@ export default class CreateProjectView extends Component {
             </div>
           </div>
 
-          <h1>Needs: </h1>
+          <p className='needs'>Needs: </p>
 
           <div className='md:flex md:items-center mb-6'>
             <div className='md:w-1/3'>
@@ -210,8 +210,8 @@ export default class CreateProjectView extends Component {
             </div>
           </div>
         </form>
-        <div>
-          <label className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>Resources</label>
+        <div className='w-full max-w-sm'>
+          <label className='block text-gray-700 font-bold mb-1 md:mb-0 pr-4'>Resources</label>
 
           <NeedsInput addResources={this.addResource} />
           <div className='mb-5 mt-3'>
@@ -231,7 +231,7 @@ export default class CreateProjectView extends Component {
             })}
           </div>
 
-          <label className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>Volunteer</label>
+          <label className='block text-gray-700 font-bold mb-1 md:mb-0 pr-4'>Volunteer</label>
           <NeedsInput addResources={this.addVolunteer} />
 
           {this.state.volunteer.map((volunteer, index) => {

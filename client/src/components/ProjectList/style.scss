@@ -28,3 +28,25 @@
   text-align: justify;
 }
 
+.projectCardLine {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: auto;
+}
+
+.projectCardInformation {
+  text-align: center;
+  line-height: 260%;
+  height: 180px;
+}
+
+.projectCardHome {
+  margin: 10px;
+  min-width: 23em;
+  max-width: 23em;
+}
+
+.projectDescriptionHome {
+  height: 50%;
+}
