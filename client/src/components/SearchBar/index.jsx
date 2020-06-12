@@ -14,7 +14,7 @@ class SearchBar extends Component {
   handleFormSubmission = (event) => {
     event.preventDefault();
     const { term } = this.state;
-    this.props.history.push(`/search?term=${term}`);
+    if (term.length > 0) this.props.history.push(`/search?term=${term}`);
   };
 
   handleTermInputChange = (event) => {
