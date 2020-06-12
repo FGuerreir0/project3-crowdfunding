@@ -14,7 +14,7 @@ export default class CreateProjectView extends Component {
       location: '',
       money: '',
       resources: [],
-      volunteer: []
+      volunteer: [],
     };
   }
 
@@ -23,7 +23,7 @@ export default class CreateProjectView extends Component {
     const obj = { name, quantity };
     arr.push(obj);
     this.setState({
-      resources: arr
+      resources: arr,
     });
   };
 
@@ -32,7 +32,7 @@ export default class CreateProjectView extends Component {
     const obj = { name, quantity };
     arr.push(obj);
     this.setState({
-      volunteer: arr
+      volunteer: arr,
     });
   };
 
@@ -43,7 +43,7 @@ export default class CreateProjectView extends Component {
   handleInputChange = ({ target: { name, value } }) => {
     //console.log(name, value);
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -51,7 +51,7 @@ export default class CreateProjectView extends Component {
     const { name } = event.target;
     const file = event.target.files[0];
     this.setState({
-      [name]: file
+      [name]: file,
     });
   };
 
@@ -59,7 +59,7 @@ export default class CreateProjectView extends Component {
     const arr = [...this.state.resources];
     const newarr = arr.filter((resource, index) => idx !== index);
     this.setState({
-      resources: newarr
+      resources: newarr,
     });
   };
 
@@ -67,7 +67,7 @@ export default class CreateProjectView extends Component {
     const arr = [...this.state.volunteer];
     const newarr = arr.filter((v, index) => idx !== index);
     this.setState({
-      volunteer: newarr
+      volunteer: newarr,
     });
   };
 
@@ -92,10 +92,7 @@ export default class CreateProjectView extends Component {
         <form className='w-full max-w-sm'>
           <div className='md:flex md:items-center mb-6'>
             <div className='md:w-1/3'>
-              <label
-                htmlFor='title'
-                className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'
-              >
+              <label htmlFor='title' className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>
                 Title
               </label>
             </div>
@@ -113,30 +110,18 @@ export default class CreateProjectView extends Component {
           </div>
           <div className='md:flex md:items-center mb-6'>
             <div className='md:w-1/3'>
-              <label
-                className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'
-                htmlFor='picture'
-              >
+              <label className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4' htmlFor='picture'>
                 Picture{' '}
               </label>
             </div>
             <div className='md:w-2/3'>
-              <input
-                required
-                type='file'
-                name='coverPictureUrl'
-                id='picture'
-                onChange={this.handleFileInputChange}
-              />
+              <input required type='file' name='coverPictureUrl' id='picture' onChange={this.handleFileInputChange} />
             </div>
           </div>
 
           <div className='md:flex md:items-center mb-6'>
             <div className='md:w-1/3'>
-              <label
-                htmlFor='description'
-                className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'
-              >
+              <label htmlFor='description' className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>
                 Description
               </label>
             </div>
@@ -155,10 +140,7 @@ export default class CreateProjectView extends Component {
 
           <div className='md:flex md:items-center mb-6'>
             <div className='md:w-1/3'>
-              <label
-                htmlFor='location'
-                className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'
-              >
+              <label htmlFor='location' className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>
                 Location
               </label>
             </div>
@@ -177,10 +159,7 @@ export default class CreateProjectView extends Component {
 
           <div className='md:flex md:items-center mb-6'>
             <div className='md:w-1/3'>
-              <label
-                htmlFor='category'
-                className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'
-              >
+              <label htmlFor='category' className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>
                 Category:
               </label>
             </div>
@@ -201,11 +180,7 @@ export default class CreateProjectView extends Component {
                   <option value='Other'>Other</option>
                 </select>
                 <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
-                  <svg
-                    className='fill-current h-4 w-4'
-                    xmlns='http://www.w3.org/2000/svg'
-                    viewBox='0 0 20 20'
-                  >
+                  <svg className='fill-current h-4 w-4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
                     <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
                   </svg>
                 </div>
@@ -217,10 +192,7 @@ export default class CreateProjectView extends Component {
 
           <div className='md:flex md:items-center mb-6'>
             <div className='md:w-1/3'>
-              <label
-                htmlFor='money'
-                className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'
-              >
+              <label htmlFor='money' className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>
                 Money
               </label>
             </div>
@@ -239,9 +211,7 @@ export default class CreateProjectView extends Component {
           </div>
         </form>
         <div>
-          <label className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>
-            Resources
-          </label>
+          <label className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>Resources</label>
 
           <NeedsInput addResources={this.addResource} />
           <div className='mb-5 mt-3'>
@@ -261,9 +231,7 @@ export default class CreateProjectView extends Component {
             })}
           </div>
 
-          <label className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>
-            Volunteer
-          </label>
+          <label className='block text-gray-700 font-bold md:text-right mb-1 md:mb-0 pr-4'>Volunteer</label>
           <NeedsInput addResources={this.addVolunteer} />
 
           {this.state.volunteer.map((volunteer, index) => {

@@ -32,6 +32,7 @@ class HomeView extends Component {
   render(props) {
     return (
       <div>
+        <div className='landing'></div>
         <div className='mt-12 mb-6 text-center'>
           {this.props.user && (
             <Link
@@ -42,7 +43,8 @@ class HomeView extends Component {
             </Link>
           )}
         </div>
-        <div className='mt-2 mb-6 text-center'>
+
+        <div className='mt-2 mb-6 text-center' id='facts'>
           <Fact />
         </div>
         <ProjectsList projects={this.state.projects} user={this.props.user} />

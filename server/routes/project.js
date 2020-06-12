@@ -77,39 +77,28 @@ projectRouter.get('/:projectId', (req, res, next) => {
 
 projectRouter.post('/:projectId/edit', uploader.single('coverPictureUrl'), (req, res, next) => {
   const id = req.params.projectId;
-  const { title, location, shortDescription, category } = req.body;
+  const { title, location, shortDescription, category, money, resources, volunteer } = req.body;
   let coverPictureUrl;
   if (req.file) coverPictureUrl = req.file.path;
 
-  if (coverPictureUrl) {
-    Project.findByIdAndUpdate(
-      { _id: id },
-      { title, location, shortDescription, coverPictureUrl, category }
-    )
-      .then((result) => {
-        result.title = title;
-        result.coverPictureUrl = coverPictureUrl;
-        result.shortDescription = shortDescription;
-        result.category = category;
-        result.location = location;
-        res.json({ project: result });
-      })
-      .catch((error) => {
-        next(error);
-      });
-  } else {
-    Project.findByIdAndUpdate({ _id: id }, { title, location, shortDescription, category })
-      .then((result) => {
-        result.title = title;
-        result.shortDescription = shortDescription;
-        result.category = category;
-        result.location = location;
-        res.json({ project: result });
-      })
-      .catch((error) => {
-        next(error);
-      });
-  }
+  Project.findById(id)
+    .then((project) => {
+      project.title = title;
+      if (coverPictureUrl) project.coverPictureUrl = coverPictureUrl;
+      project.shortDescription = shortDescription;
+      project.category = category;
+      project.location = location;
+      project.needs.money.total = money;
+      project.needs.resources = JSON.parse(resources);
+      project.needs.volunteer = JSON.parse(volunteer);
+      return project.save();
+    })
+    .then((result) => {
+      res.json({ project: result });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 //CREATE PROJECT
 
