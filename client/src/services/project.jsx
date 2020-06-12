@@ -103,6 +103,7 @@ const searchForProject = (term) => {
       const data = response.data;
       console.log(data.projects);
       const projects = data.projects;
+      console.log(projects);
       return Promise.resolve(projects);
     })
     .catch((error) => {
