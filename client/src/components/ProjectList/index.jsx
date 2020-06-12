@@ -8,6 +8,7 @@ const ProjectsList = (props) => {
   console.log(props);
   let loaded = false;
   if (props.projects.length > 0) loaded = true;
+  console.log(props.projects);
   return (
     <>
       {loaded && (
@@ -16,7 +17,11 @@ const ProjectsList = (props) => {
             {props.projects.map((project) => (
               <div key={project._id} className='projectCardHome'>
                 <div>
-                  <img className='object-cover h-48 w-full ...' src={project.coverPictureUrl} alt={project.title} />
+                  <img
+                    className='object-cover h-48 w-full ...'
+                    src={project.coverPictureUrl}
+                    alt={project.title}
+                  />
                   <div className='project_dateCreator'>
                     <small>
                       <strong>Created by: </strong>
@@ -31,7 +36,9 @@ const ProjectsList = (props) => {
                 <div className='projectCardInformation px-6 py-4'>
                   <h2 className='font-bold text-xl mb-2'>{project.title}</h2>
                   <div className='projectDescriptionHome'>
-                    <p className='text-base limitLines lineHe mb-5 mt-5 text-grey-darker'>{project.shortDescription}</p>
+                    <p className='text-base limitLines lineHe mb-5 mt-5 text-grey-darker'>
+                      {project.shortDescription}
+                    </p>
                   </div>
 
                   {(project.needs.money.total && (
