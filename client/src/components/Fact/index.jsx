@@ -35,7 +35,7 @@ class Fact extends Component {
       this.setState({
         count: newcount
       });
-    }, 10000);
+    }, 5000);
   }
 
   componentWillUnmount() {
