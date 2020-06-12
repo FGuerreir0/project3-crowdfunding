@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+import { BsSearch } from 'react-icons/bs';
+
 import './styles.scss';
 
 class SearchBar extends Component {
@@ -26,14 +28,20 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form className='search-bar' onSubmit={this.handleFormSubmission}>
-        <input
-          type='search'
-          placeholder='Find more...'
-          value={this.state.term}
-          onChange={this.handleTermInputChange}
-        />
-        <button>Search</button>
+      <form className='search-bar flex flex-row' onSubmit={this.handleFormSubmission}>
+        <div>
+          <button>
+            <BsSearch />
+          </button>
+        </div>
+        <div>
+          <input
+            type='search'
+            placeholder='Find more...'
+            value={this.state.term}
+            onChange={this.handleTermInputChange}
+          />
+        </div>
       </form>
     );
   }
