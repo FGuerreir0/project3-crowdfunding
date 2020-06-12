@@ -34,11 +34,12 @@ const ProjectsList = (props) => {
                     <p className='text-base limitLines lineHe mb-5 mt-5 text-grey-darker'>{project.shortDescription}</p>
                   </div>
 
-                  {project.needs.money.total && (
+                  {(project.needs.money.total && (
                     <div>
                       <ProgressBar project={project} />
                     </div>
-                  )}
+                  )) ||
+                    ''}
                 </div>
                 <div className='px-6 py-4'>#{project.category}</div>
                 <div className='bg-blue-500 hover:bg-blue-700 text-center text-white font-bold py-2 px-4 border border-blue-700 rounded'>

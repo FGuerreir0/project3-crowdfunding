@@ -42,9 +42,12 @@
 }
 
 .projectCardHome {
-  margin: 10px;
+  margin: 10px 20px;
   min-width: 23em;
   max-width: 23em;
+  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.3);
+  //border: 1px solid rgb(100, 150, 151);
+  //border-radius: 5px;
 }
 
 .projectDescriptionHome {
