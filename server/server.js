@@ -7,7 +7,7 @@ const app = require('./app');
 const mongoose = require('mongoose');
 
 const PORT = parseInt(process.env.PORT, 10);
-const URI = process.env.MONGODB_URI;
+const URI = process.env.DB_URI;
 
 const terminate = (error) => {
   if (error) debug(error);
